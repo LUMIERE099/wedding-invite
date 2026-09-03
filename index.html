@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="si" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title id="page-title-tag">Kasun & Sanduni — Traditional Kandyan Morning Wedding Invitation</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@200;300;400;500&family=Abhaya+Libre:wght@600;800&family=Great+Vibes&display=stylesheet" rel="stylesheet">
+    <style>
+        :root {
+            --gold-primary: #b8860b;
+            --gold-accent: #c59b27;
+            --gold-dark: #8c6713;
+            --kandyan-red: #8b0000;
+            --bg-deep: #faf8f5;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --text-main: #2c2c2c;
+            --text-muted: #555555;
+            --border-glass: rgba(197, 155, 39, 0.25);
+        }
+
+        .dark-mode {
+            --gold-primary: #f6d06f;
+            --gold-accent: #ffd700;
+            --gold-dark: #e6ca65;
+            --bg-deep: #0b0907;
+            --bg-card: rgba(22, 18, 12, 0.95);
+            --text-main: #ffffff;
+            --text-muted: #d4d4d4;
+            --border-glass: rgba(255, 215, 0, 0.35);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .font-serif-luxury { font-family: 'Cormorant Garamond', serif; }
+        .font-cinzel { font-family: 'Cinzel Decorative', cursive; }
+        .font-sinhala { font-family: 'Abhaya Libre', serif; }
+        .font-cute-script { font-family: 'Great Vibes', cursive; }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-accent) 50%, var(--gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .couple-name-vibe {
+            background: linear-gradient(135deg, #d97706 0%, #fbbf24 35%, #f59e0b 70%, #b45309 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+        }
+        .dark-mode .couple-name-vibe {
+            background: linear-gradient(135deg, #fffbeb 0%, #fde047 35%, #facc15 70%, #eab308 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 10px rgba(253,224,71,0.3));
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            color: var(--text-main);
+        }
+        .glass-card:hover {
+            border-color: var(--gold-accent);
+            box-shadow: 0 15px 40px rgba(197, 155, 39, 0.18);
+            transform: translateY(-3px);
+        }
+
+        .text-adaptive-muted {
+            color: var(--text-muted);
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            will-change: opacity, transform;
+        }
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        .float-animation { animation: floatSlow 6s ease-in-out infinite; }
+
+        @keyframes cuteBounceGlow {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-4px) scale(1.02); }
+        }
+        .cute-name-glow { animation: cuteBounceGlow 4s ease-in-out infinite; }
+
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow { animation: spinSlow 8s linear infinite; }
+
+        #gold-rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 999;
+            display: block;
+            overflow: hidden;
+        }
+        .gold-particle {
+            position: absolute;
+            color: var(--gold-accent);
+            user-select: none;
+            animation: goldRain linear infinite;
+        }
+        @keyframes goldRain {
+            0% { transform: translateY(-30px) scale(0.5) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.7; }
+            85% { opacity: 0.7; }
+            100% { transform: translateY(105vh) scale(1.2) rotate(360deg); opacity: 0; }
+        }
+
+        .modal-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #builder-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .custom-input {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            color: var(--text-main);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .custom-input:focus {
+            border-color: var(--gold-accent);
+            box-shadow: 0 0 0 2px rgba(197, 155, 39, 0.2);
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <div id="gold-rain-container"></div>
+
+    <!-- Direct Background Audio Element -->
+    <audio id="bg-audio" loop preload="auto">
+        <source src="https://raw.githubusercontent.com/dinithinduwara07-bit/songs/main/song.mp3.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Top Right Floating Dark Mode Toggle Icon -->
+    <div class="fixed top-5 right-5 z-[2000]">
+        <button onclick="toggleDarkMode()" class="glass-card w-11 h-11 rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition border border-amber-500/40 text-amber-600 dark:text-amber-300 bg-amber-500/10 backdrop-blur-md">
+            <span id="dark-mode-icon" class="text-lg">🌙</span>
+        </button>
+    </div>
+
+    <div id="builder-panel">
+        <button onclick="toggleAddGuestModal()" class="bg-gradient-to-r from-[#713f12] via-[#92400e] to-[#b45309] text-white font-bold text-xs uppercase tracking-widest px-4 py-3 rounded-full shadow-2xl flex items-center gap-2 transform hover:scale-105 transition">
+            <span>👑 Add Guest Name</span>
+        </button>
+        <button onclick="toggleBuilderDrawer()" class="bg-gradient-to-r from-[#8c6713] via-[#c59b27] to-[#e6ca65] text-white font-bold text-xs uppercase tracking-widest px-5 py-3.5 rounded-full shadow-2xl flex items-center gap-2 transform hover:scale-105 transition">
+            <span>⚙️ Customize Invitation</span>
+        </button>
+    </div>
+
+    <div id="addGuestModal" class="modal-overlay fixed inset-0 z-[2002] bg-black/60 flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-sm md:max-w-md w-full overflow-hidden shadow-2xl relative p-6 text-center space-y-4">
+            <button onclick="toggleAddGuestModal()" class="absolute top-4 right-4 z-10 bg-black/10 hover:bg-black/20 text-amber-600 w-8 h-8 rounded-full flex items-center justify-center text-base font-bold transition">×</button>
+            <span class="text-4xl inline-block">👑</span>
+            <h3 class="font-cinzel text-xl font-bold gold-gradient-text">Personalize For Guest</h3>
+            <p class="font-serif-luxury italic text-xs text-adaptive-muted">Enter the honored guest's name below to generate a dedicated customized link that displays only their name on the card.</p>
+            <div class="space-y-3 pt-2">
+                <input type="text" id="inp-custom-guest-name" placeholder="Enter Guest Name (e.g. Mr. & Mrs. Perera)" class="custom-input text-center font-bold">
+                <button onclick="generatePersonalizedGuestLink()" class="w-full bg-gradient-to-r from-[#8c6713] via-[#c59b27] to-[#e6ca65] text-white font-bold text-xs uppercase tracking-widest py-3 rounded-xl shadow-md">
+                    ✨ Generate Guest Page Link
+                </button>
+            </div>
+            <div id="generated-link-box" class="hidden pt-3 border-t border-amber-500/20 space-y-2 text-left">
+                <p class="text-[11px] font-semibold text-amber-600">Customized Link Ready:</p>
+                <input type="text" id="disp-generated-url" readonly class="custom-input text-[11px] select-all">
+                <button onclick="copyGeneratedLink()" class="w-full bg-stone-800 text-white font-bold text-[11px] py-2 rounded-lg">📋 Copy Link to Clipboard</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="builder-drawer" class="modal-overlay fixed inset-0 z-[2001] bg-black/50 flex justify-end">
+        <div class="w-full max-w-lg bg-[var(--bg-deep)] h-full shadow-2xl flex flex-col overflow-hidden border-l border-amber-500/30 transform transition-transform duration-300">
+            <div class="p-5 bg-gradient-to-r from-[#8c6713] via-[#c59b27] to-[#e6ca65] text-white flex justify-between items-center shadow-md">
+                <h3 class="font-cinzel font-bold text-lg">Live Website Customizer</h3>
+                <button onclick="toggleBuilderDrawer()" class="text-white text-xl font-bold px-2.5 py-0.5 rounded-full hover:bg-black/10">×</button>
+            </div>
+            
+            <div class="p-6 space-y-6 overflow-y-auto flex-1 font-sans text-xs">
+                
+                <div class="space-y-3 glass-card p-4 rounded-2xl shadow-sm">
+                    <h4 class="font-bold uppercase tracking-wider text-amber-600 border-b pb-1">1. Couple & Header Settings</h4>
+                    <div>
+                        <label class="block font-semibold text-adaptive-muted mb-1">Sinhala Couple Names</label>
+                        <input type="text" id="inp-sinhala-names" class="custom-input" value="කාසුන් ප්‍රසන්න & සඳූනි ප්‍රසාදිනී" oninput="updateLiveContent()">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-adaptive-muted mb-1">English Couple Names</label>
+                        <input type="text" id="inp-english-names" class="custom-input" value="Kasun & Sanduni" oninput="updateLiveContent()">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-adaptive-muted mb-1">Esteemed Guest Phrase</label>
+                        <input type="text" id="inp-guest-title" class="custom-input" value="Prepared With Traditional Distinction For / ගෞරවනීය අමුත්තන් වෙතයි" oninput="updateLiveContent()">
+                    </div>
+                </div>
+
+                <div class="space-y-3 glass-card p-4 rounded-2xl shadow-sm">
+                    <h4 class="font-bold uppercase tracking-wider text-amber-600 border-b pb-1">2. Groom Details</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block font-semibold text-adaptive-muted mb-1">Sinhala Name</label>
+                            <input type="text" id="inp-groom-si" class="custom-input" value="කාසුන් ප්‍රසන්න" oninput="updateLiveContent()">
+                        </div>
+                        <div>
+                            <label class="block font-semibold text-adaptive-muted mb-1">English Name</label>
+                            <input type="text" id="inp-groom-en" class="custom-input" value="Kasun Prasanna" oninput="updateLiveContent()">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-adaptive-muted mb-1">Parents / Lineage Info</label>
+                        <input type="text" id="inp-groom-parents" class="custom-input" value="Beloved Son of Mr. & Mrs. Prasanna" oninput="updateLiveContent()">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-adaptive-muted mb-1">Groom Description</label>
+                        <textarea id="inp-groom-desc" class="custom-input" rows="2" oninput="updateLiveContent()">Proudly nurtured with traditional Kandyan values and boundless familial devotion, stepping forward with gallantry and noble heritage.</textarea>
+                    </div>
+                </div>
+
+                <div class="space-y-3 glass-card p-4 rounded-2xl shadow-sm">
+                    <h4 class="font-bold uppercase tracking-wider text-amber-600 border-b pb-1">3. Bride Details</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block font-semibold text-adaptive-muted mb-1">Sinhala Name</label>
+                            <input type="text" id="inp-bride-si" class="custom-input" value="සඳූනි ප්‍රසාදිනී" oninput="updateLiveContent()">
+                        </div>
+                        <div>
+                            <label class="block font-semibold text-adaptive-muted mb-1">English Name</label>
+                            <input type="text" id="inp-bride-en" class="custom-input" value="Sanduni Prasadini" oninput="updateLiveContent()">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-adaptive-muted mb-1">Parents / Lineage Info</label>
+                        <input type="text" id="inp-bride-parents" class="custom-input" value="Beloved Daughter of Mr. & Mrs. Prasadini" oninput="updateLiveContent()">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-adaptive-muted mb-1">Bride Description</label>
+                        <textarea id="inp-bride-desc" class="custom-input" rows="2" oninput="updateLiveContent()">A radiant embodiment of traditional Sri Lankan grace, elegance, and timeless poise, adorned in exquisite Kandyan bridal attire.</textarea>
+                    </div>
+                </div>
+
+                <div class="space-y-3 glass-card p-4 rounded-2xl shadow-sm">
+                    <h4 class="font-bold uppercase tracking-wider text-amber-600 border-b pb-1">4. Custom Activities & Nekath Creator</h4>
+                    <div class="space-y-2 pt-2">
+                        <input type="hidden" id="edit-act-index" value="-1">
+                        <input type="text" id="new-act-title" placeholder="Activity Title (e.g. Traditional Welcome)" class="custom-input">
+                        <input type="text" id="new-act-time" placeholder="Time (e.g. 7:45 AM)" class="custom-input">
+                        <div class="flex gap-2">
+                            <button type="button" id="save-act-btn" onclick="saveActivity()" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white font-bold py-2.5 rounded-xl transition shadow-sm text-xs">
+                                ✨ Add Activity Card
+                            </button>
+                            <button type="button" id="cancel-edit-btn" onclick="cancelActivityEdit()" class="hidden bg-gray-300 text-gray-800 font-bold py-2.5 px-4 rounded-xl text-xs">Cancel</button>
+                        </div>
+                    </div>
+                    <div id="builder-activities-manager-list" class="space-y-2 pt-3 border-t border-amber-500/20 max-h-48 overflow-y-auto"></div>
+                </div>
+
+                <div class="space-y-3 glass-card p-4 rounded-2xl shadow-sm">
+                    <h4 class="font-bold uppercase tracking-wider text-amber-600 border-b pb-1">5. Venue & GPS Map Location</h4>
+                    <div>
+                        <label class="block font-semibold text-adaptive-muted mb-1">Venue Name & City</label>
+                        <input type="text" id="inp-venue-name" class="custom-input" value="The Grand Banquet Hall, Colombo, Sri Lanka" oninput="updateLiveContent()">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-adaptive-muted mb-1">Upload Venue Background Photos</label>
+                        <input type="file" id="inp-venue-files" class="custom-input file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100" accept="image/*" multiple onchange="handleVenueFiles(this)">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-adaptive-muted mb-1">GPS Location Preview Image URL</label>
+                        <input type="text" id="inp-venue-img" class="custom-input" value="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" oninput="updateLiveContent()">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-adaptive-muted mb-1">GPS Google Maps Link</label>
+                        <input type="text" id="inp-venue-gps" class="custom-input" value="https://maps.google.com" oninput="updateLiveContent()">
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 pt-1">
+                        <div>
+                            <label class="block font-semibold text-adaptive-muted mb-1">Day</label>
+                            <input type="text" id="inp-sch-day" class="custom-input" value="Saturday" oninput="updateLiveContent()">
+                        </div>
+                        <div>
+                            <label class="block font-semibold text-adaptive-muted mb-1">Date</label>
+                            <input type="text" id="inp-sch-date" class="custom-input" value="Nov 28, 2026" oninput="updateLiveContent()">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-adaptive-muted mb-1">Commencement Time</label>
+                        <input type="text" id="inp-sch-time" class="custom-input" value="08:30 AM" oninput="updateLiveContent()">
+                    </div>
+                </div>
+
+                <div class="pt-3">
+                    <button onclick="toggleBuilderDrawer()" class="w-full bg-gradient-to-r from-[#713f12] via-[#92400e] to-[#b45309] text-white font-bold py-3.5 rounded-xl shadow-lg uppercase tracking-widest text-xs transition">
+                        Close Customizer ✨
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="rsvpModal" class="modal-overlay fixed inset-0 z-[1000] bg-black/60 flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-sm md:max-w-md w-full overflow-hidden shadow-2xl relative p-6 text-center">
+            <button onclick="closeRSVPModal()" class="absolute top-4 right-4 z-10 bg-black/10 hover:bg-black/20 text-amber-600 w-9 h-9 rounded-full flex items-center justify-center text-lg font-bold transition">×</button>
+            <div class="py-4 space-y-3">
+                <span id="modal-badge" class="text-[10px] uppercase tracking-[0.25em] bg-amber-500/20 border border-amber-500/40 px-3 py-1 rounded-full font-medium text-amber-600">✦ Morning Heritage ✦</span>
+                <h3 id="modal-title" class="font-serif-luxury text-2xl font-bold">Morning Blessing</h3>
+                <p id="modal-message" class="font-serif-luxury italic text-sm md:text-base text-adaptive-muted leading-relaxed">
+                    "උදෑසන මඟුල් උත්සවය සඳහා ඔබගේ පැමිණීම අපගේ අභිමානයයි."
+                </p>
+                <button onclick="closeRSVPModal()" class="w-full bg-gradient-to-r from-[#8c6713] via-[#c59b27] to-[#e6ca65] text-white font-bold text-xs uppercase tracking-[0.2em] py-4 rounded-xl shadow-xl transition">
+                    Enter The Celebration ✨
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="guestClickModal" class="modal-overlay fixed inset-0 z-[1002] bg-black/60 flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-sm md:max-w-md w-full overflow-hidden shadow-2xl relative p-6 text-center space-y-4">
+            <button onclick="closeGuestClickModal()" class="absolute top-4 right-4 z-10 bg-black/10 hover:bg-black/20 text-amber-600 w-8 h-8 rounded-full flex items-center justify-center text-base font-bold transition">×</button>
+            <span class="text-4xl inline-block animate-bounce">👑</span>
+            <h3 class="font-cinzel text-xl font-bold gold-gradient-text">Special Guest Welcome</h3>
+            <p class="font-serif-luxury italic text-sm text-adaptive-muted leading-relaxed">
+                "ගෞරවනීය අමුත්තන් වෙත පිරිනැමෙන මෙම අසිරිමත් උදෑසන මඟුල් ආරාධනාව ඔබගේ පැමිණීමෙන් තවත් අර්ථවත් වේවා!"
+            </p>
+            <button onclick="closeGuestClickModal()" class="w-full bg-gradient-to-r from-[#8c6713] via-[#c59b27] to-[#e6ca65] text-white font-bold text-xs uppercase tracking-widest py-3 rounded-xl shadow-md">
+                Thank You ✨
+            </button>
+        </div>
+    </div>
+
+    <div id="activityModal" class="modal-overlay fixed inset-0 z-[1001] bg-black/60 flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative p-6 md:p-8 space-y-4 text-left max-h-[90vh] overflow-y-auto" id="activityModalBox">
+            <button onclick="closeActivityModal()" class="absolute top-4 right-4 z-10 bg-black/10 hover:bg-black/20 text-amber-600 w-9 h-9 rounded-full flex items-center justify-center text-lg font-bold transition">×</button>
+            <span id="act-modal-badge" class="text-[10px] uppercase tracking-[0.2em] bg-amber-500/15 border border-amber-500/40 px-3.5 py-1 rounded-full font-bold text-amber-600 inline-block">✦ 08:30 AM ✦</span>
+            <h3 id="act-modal-title" class="font-cinzel text-xl md:text-3xl font-bold gold-gradient-text leading-snug">Activity Title</h3>
+            <p id="act-modal-subtitle" class="font-serif-luxury italic text-sm md:text-base text-amber-600 font-semibold border-b border-amber-500/20 pb-3">Subheading details</p>
+            <p id="act-modal-desc" class="font-serif-luxury text-sm md:text-base text-adaptive-muted leading-relaxed">Detailed morning activity description...</p>
+            <div class="bg-amber-500/10 p-4 rounded-2xl border border-amber-500/20 space-y-1 mt-3">
+                <p class="text-xs font-bold uppercase tracking-widest text-amber-600">✨ Morning Guidelines:</p>
+                <p id="act-modal-notes" class="text-xs md:text-sm text-adaptive-muted">Please be seated promptly.</p>
+            </div>
+            <button onclick="closeActivityModal()" class="w-full bg-gradient-to-r from-[#8c6713] via-[#c59b27] to-[#e6ca65] text-white font-bold text-xs uppercase tracking-[0.2em] py-4 rounded-xl shadow-xl transition mt-3">
+                Close Details ⚜
+            </button>
+        </div>
+    </div>
+
+    <div class="relative z-10 space-y-16 md:space-y-28 pb-24 md:pb-32">
+        
+        <!-- Hero Section -->
+        <div class="relative h-[600px] sm:h-[700px] md:h-[850px] w-full bg-gradient-to-b from-[#1a150c] via-[#2c2211] to-[#120e07] flex flex-col justify-between overflow-hidden p-4 sm:p-8 md:p-16 text-center text-white">
+            
+            <div class="absolute top-6 left-6 text-amber-300 text-2xl md:text-3xl tracking-widest pointer-events-none z-20 animate-pulse">🪷 ── ✧</div>
+            <div class="absolute top-6 right-6 text-amber-300 text-2xl md:text-3xl tracking-widest pointer-events-none z-20 animate-pulse">✧ ── 🪷</div>
+
+            <div class="relative z-10 pt-4 flex flex-col items-center gap-2">
+                <span class="text-[10px] sm:text-xs uppercase tracking-[0.4em] bg-black/60 px-6 sm:px-9 py-3 rounded-full border border-amber-400/40 text-amber-200 font-medium shadow-2xl animate-bounce">🪷 සුබ උදෑසන මඟුල් උත්සවය 2026 🪷</span>
+            </div>
+
+            <div class="relative z-10 space-y-4 my-auto px-2">
+                <div class="cute-name-glow space-y-2 inline-block px-4 py-2">
+                    <h2 id="disp-sinhala-names" class="font-sinhala text-2xl sm:text-3xl md:text-4xl couple-name-vibe tracking-wider flex items-center justify-center gap-3 font-extrabold">
+                        <span>කාසුන් ප්‍රසන්න & සඳූනි ප්‍රසාදිනී</span>
+                    </h2>
+                    <h1 id="disp-english-names" class="font-cute-script text-5xl sm:text-6xl md:text-8xl couple-name-vibe drop-shadow-2xl py-2 flex items-center justify-center gap-4 font-bold">
+                        <span>Kasun & Sanduni</span>
+                    </h1>
+                </div>
+
+                <p class="font-serif-luxury text-base sm:text-lg md:text-xl text-amber-100 font-light italic tracking-wider">Traditional Kandyan Morning Wedding Celebration</p>
+            </div>
+
+            <div onclick="handleGuestCardClick()" class="relative z-10 glass-card p-5 sm:p-7 md:p-8 rounded-3xl text-center max-w-xl md:max-w-2xl mx-auto w-full shadow-2xl cursor-pointer">
+                <p id="disp-guest-title" class="text-[10px] sm:text-xs text-amber-600 dark:text-amber-400 uppercase tracking-[0.3em] font-bold">Prepared With Traditional Distinction For / ගෞරවනීය අමුත්තන් වෙතයි</p>
+                <p id="guest-name" class="font-serif-luxury text-2xl sm:text-3xl md:text-4xl font-bold mt-1.5">Our Esteemed Guest</p>
+                <span class="block text-[10px] text-amber-600 dark:text-amber-400 uppercase tracking-widest mt-2 font-medium">✨ Click here for special guest message ✨</span>
+            </div>
+        </div>
+
+        <!-- Couple Details Section -->
+        <div class="px-4 sm:px-6 md:px-24 space-y-10 md:space-y-14 max-w-6xl mx-auto reveal-on-scroll">
+            
+            <!-- Embedded Audio Music Player Widget -->
+            <div class="glass-card p-5 sm:p-6 rounded-3xl shadow-xl flex items-center justify-between gap-4 max-w-xl mx-auto border border-amber-500/30 bg-gradient-to-r from-amber-500/5 via-amber-500/10 to-amber-500/5">
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleAudioPlayback()" id="audio-toggle-btn" class="w-12 h-12 rounded-full bg-gradient-to-r from-[#8c6713] via-[#c59b27] to-[#e6ca65] text-white flex items-center justify-center shadow-lg transform hover:scale-105 transition relative flex-shrink-0">
+                        <span id="audio-icon" class="text-base">🎵</span>
+                        <span id="audio-spinner" class="absolute inset-0 rounded-full border-2 border-white/60 border-t-transparent animate-spin-slow hidden"></span>
+                    </button>
+                    <div class="text-left">
+                        <p id="audio-status-text" class="text-xs font-bold uppercase tracking-wider gold-gradient-text">Background Melody</p>
+                        <p id="audio-subtitle-text" class="text-[11px] text-adaptive-muted font-serif-luxury italic">Tap to play traditional wedding song</p>
+                    </div>
+                </div>
+                <div class="hidden sm:block text-right">
+                    <span class="text-[10px] uppercase tracking-widest bg-amber-500/20 text-amber-600 dark:text-amber-300 px-3 py-1 rounded-full font-bold">✦ Lumière Audio ✦</span>
+                </div>
+            </div>
+
+            <div class="text-center space-y-2 pt-4">
+                <span class="text-xs text-amber-600 dark:text-amber-400 font-bold uppercase tracking-[0.4em]">ප්‍රධාන මනාල මනාලියන් / The Couple</span>
+                <h2 class="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold gold-gradient-text">Meet the Bride & Groom</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
+                <div class="glass-card p-8 sm:p-10 md:p-12 rounded-3xl relative overflow-hidden float-animation flex flex-col justify-between shadow-xl">
+                    <div class="space-y-5 sm:space-y-6 relative z-10">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs uppercase tracking-[0.3em] glass-card px-4 py-2 rounded-full border border-amber-500/30 text-amber-600 dark:text-amber-300 font-bold shadow-sm">මනාලයා • The Groom</span>
+                            <span class="text-2xl sm:text-3xl text-amber-600">🤵‍♂️</span>
+                        </div>
+                        <div>
+                            <h3 id="disp-groom-si" class="font-sinhala text-2xl sm:text-3xl font-bold text-amber-900 dark:text-amber-300">කාසුන් ප්‍රසන්න</h3>
+                            <h3 id="disp-groom-en" class="font-cute-script text-3xl sm:text-4xl md:text-5xl text-amber-900 dark:text-amber-200 mt-1">Kasun Prasanna</h3>
+                            <p id="disp-groom-parents" class="font-serif-luxury italic text-sm sm:text-base text-adaptive-muted mt-1.5">Beloved Son of Mr. & Mrs. Prasanna</p>
+                        </div>
+                        <p id="disp-groom-desc" class="font-serif-luxury text-base sm:text-sm text-adaptive-muted leading-relaxed">
+                            Proudly nurtured with traditional Kandyan values and boundless familial devotion, stepping forward with gallantry and noble heritage.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 sm:p-10 md:p-12 rounded-3xl relative overflow-hidden float-animation flex flex-col justify-between shadow-xl" style="animation-delay: 2.5s;">
+                    <div class="space-y-5 sm:space-y-6 relative z-10">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs uppercase tracking-[0.3em] glass-card px-4 py-2 rounded-full border border-amber-500/30 text-amber-600 dark:text-amber-300 font-bold shadow-sm">මනාලිය • The Bride</span>
+                            <span class="text-2xl sm:text-3xl text-amber-600">👰‍♀️</span>
+                        </div>
+                        <div>
+                            <h3 id="disp-bride-si" class="font-sinhala text-2xl sm:text-3xl font-bold text-amber-900 dark:text-amber-300">සඳූනි ප්‍රසාදිනී</h3>
+                            <h3 id="disp-bride-en" class="font-cute-script text-3xl sm:text-4xl md:text-5xl text-amber-900 dark:text-amber-200 mt-1">Sanduni Prasadini</h3>
+                            <p id="disp-bride-parents" class="font-serif-luxury italic text-sm sm:text-base text-adaptive-muted mt-1.5">Beloved Daughter of Mr. & Mrs. Prasadini</p>
+                        </div>
+                        <p id="disp-bride-desc" class="font-serif-luxury text-base sm:text-sm text-adaptive-muted leading-relaxed">
+                            A radiant embodiment of traditional Sri Lankan grace, elegance, and timeless poise, adorned in exquisite Kandyan bridal attire.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activities Section -->
+        <div class="px-4 sm:px-6 md:px-24 space-y-10 md:space-y-14 max-w-6xl mx-auto reveal-on-scroll">
+            <div class="text-center space-y-2">
+                <span class="text-xs text-amber-600 dark:text-amber-400 font-bold uppercase tracking-[0.4em]">උදෑසන නැකැත් වේලාවන් / Morning Auspicious Times</span>
+                <h2 class="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold gold-gradient-text">Morning Wedding Ceremonies & Nekath</h2>
+            </div>
+            <div id="activities-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"></div>
+        </div>
+
+        <!-- Venue Section -->
+        <div class="px-4 sm:px-6 md:px-24 space-y-10 md:space-y-12 max-w-6xl mx-auto reveal-on-scroll">
+            <div class="text-center space-y-2">
+                <span class="text-xs text-amber-600 dark:text-amber-400 font-bold uppercase tracking-[0.4em]">මංගල ස්ථානය / Venue</span>
+                <h2 class="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold gold-gradient-text">The Grand Venue</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                <div class="md:col-span-2 relative h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-8 text-center bg-gradient-to-tr from-[#1a140a] to-[#120e07] text-white">
+                    <img id="disp-venue-img" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Venue Photo" class="absolute inset-0 w-full h-full object-cover opacity-65">
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <div class="relative z-10 space-y-3">
+                        <span class="text-5xl mb-2 inline-block">🏛️</span>
+                        <h3 id="disp-venue-title" class="font-serif-luxury text-3xl sm:text-4xl font-bold text-amber-200">The Grand Banquet Hall</h3>
+                        <p id="disp-venue-subtitle" class="font-serif-luxury italic text-base sm:text-lg text-gray-100 mt-2 max-w-md">Colombo, Sri Lanka — Premium Morning Royal Cultural Setting</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 sm:p-10 rounded-3xl text-center flex flex-col justify-between shadow-xl">
+                    <h3 class="font-cinzel text-xl sm:text-2xl font-bold">Morning Schedule</h3>
+                    <div class="space-y-3 font-serif-luxury text-base text-adaptive-muted">
+                        <p class="p-3.5 glass-card rounded-2xl shadow-sm"><strong class="text-amber-600 dark:text-amber-400">Day:</strong> <span id="disp-sch-day">Saturday</span></p>
+                        <p class="p-3.5 glass-card rounded-2xl shadow-sm"><strong class="text-amber-600 dark:text-amber-400">Date:</strong> <span id="disp-sch-date">Nov 28, 2026</span></p>
+                        <p class="p-3.5 glass-card rounded-2xl shadow-sm"><strong class="text-amber-600 dark:text-amber-400">Commencement:</strong> <span id="disp-sch-time">08:30 AM</span></p>
+                    </div>
+                    <a id="disp-venue-gps-btn" href="https://maps.google.com" target="_blank" class="inline-block w-full text-xs uppercase tracking-[0.2em] bg-gradient-to-r from-[#8c6713] via-[#c59b27] to-[#e6ca65] text-white font-bold px-4 py-4 rounded-2xl transition shadow-xl">
+                        📍 View Precise GPS Coordinates
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Countdown & RSVP Section -->
+        <div class="px-4 sm:px-6 md:px-24 space-y-10 md:space-y-14 max-w-4xl mx-auto reveal-on-scroll">
+            <div class="glass-card rounded-3xl p-8 sm:p-10 md:p-12 shadow-xl text-center">
+                <p class="text-xs text-amber-600 dark:text-amber-400 font-bold uppercase tracking-[0.4em] mb-2">උදෑසන ශුභ මුහුර්තය තෙක් ඉතිරි කාලය</p>
+                <div id="countdown" class="grid grid-cols-4 gap-3 sm:gap-5 text-center mt-6">
+                    <div class="glass-card p-4 sm:p-6 rounded-2xl shadow-sm">
+                        <span id="days" class="font-cinzel text-2xl sm:text-3xl md:text-5xl font-bold gold-gradient-text">00</span>
+                        <span class="block text-[10px] text-amber-600 dark:text-amber-400 uppercase tracking-widest mt-1">Days</span>
+                    </div>
+                    <div class="glass-card p-4 sm:p-6 rounded-2xl shadow-sm">
+                        <span id="hours" class="font-cinzel text-2xl sm:text-3xl md:text-5xl font-bold gold-gradient-text">00</span>
+                        <span class="block text-[10px] text-amber-600 dark:text-amber-400 uppercase tracking-widest mt-1">Hours</span>
+                    </div>
+                    <div class="glass-card p-4 sm:p-6 rounded-2xl shadow-sm">
+                        <span id="minutes" class="font-cinzel text-2xl sm:text-3xl md:text-5xl font-bold gold-gradient-text">00</span>
+                        <span class="block text-[10px] text-amber-600 dark:text-amber-400 uppercase tracking-widest mt-1">Mins</span>
+                    </div>
+                    <div class="glass-card p-4 sm:p-6 rounded-2xl shadow-sm">
+                        <span id="seconds" class="font-cinzel text-2xl sm:text-3xl md:text-5xl font-bold gold-gradient-text">00</span>
+                        <span class="block text-[10px] text-amber-600 dark:text-amber-400 uppercase tracking-widest mt-1">Secs</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 sm:p-10 md:p-14 rounded-3xl shadow-xl">
+                <h3 class="font-cinzel text-2xl sm:text-3xl font-bold mb-2 text-center">Formal RSVP Registry</h3>
+                <p class="font-sinhala text-sm sm:text-base text-center text-amber-600 dark:text-amber-400 mb-8">ඔබගේ උදෑසන පැමිණීම අප වෙත කාරුණිකව දන්වන්න</p>
+                <form id="rsvp-form" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <button type="button" id="btn-accept" onclick="selectRSVP('accept')" class="text-xs uppercase tracking-[0.2em] font-bold py-4 px-6 rounded-2xl border border-amber-500/50 bg-amber-500/15 text-amber-600 dark:text-amber-300 shadow-sm transition">
+                            ✨ Joyfully Accept / සහභාගී වෙමි
+                        </button>
+                        <button type="button" id="btn-regret" onclick="selectRSVP('regret')" class="text-xs uppercase tracking-[0.2em] font-bold py-4 px-6 rounded-2xl border border-stone-400/50 bg-stone-500/10 text-adaptive-muted opacity-80 shadow-sm transition">
+                            🕊️ Regretfully Decline / සහභාගී විය නොහැක
+                        </button>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-[#8c6713] via-[#c59b27] to-[#e6ca65] text-white font-bold text-xs uppercase tracking-[0.3em] py-4.5 rounded-2xl shadow-xl">
+                        Submit Official Response
+                    </button>
+                </form>
+                <p id="rsvp-success" class="hidden text-sm mt-6 font-medium p-4 rounded-2xl border text-center shadow-sm"></p>
+            </div>
+        </div>
+
+        <footer class="w-full bg-[#120e07] text-white py-16 px-6 border-t border-amber-500/30 text-center relative">
+            <div class="max-w-2xl mx-auto space-y-5">
+                <h2 class="font-cinzel text-3xl sm:text-4xl tracking-[0.25em] font-bold gold-gradient-text">LUMIÈRE</h2>
+                <p class="font-serif-luxury italic text-sm text-amber-100/80">Crafted with elegance, heritage & precision.</p>
+                <div class="pt-6 border-t border-amber-500/20 text-[11px] uppercase tracking-[0.3em] text-amber-300/60 font-medium">
+                    © 2026 LUMIÈRE Productions • All Rights Reserved
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Script to handle Audio and Customizations -->
+    <script>
+        const bgAudio = document.getElementById('bg-audio');
+        const audioToggleBtn = document.getElementById('audio-toggle-btn');
+        const audioIcon = document.getElementById('audio-icon');
+        const audioSpinner = document.getElementById('audio-spinner');
+        const audioStatusText = document.getElementById('audio-status-text');
+
+        function toggleAudioPlayback() {
+            if (bgAudio.paused) {
+                bgAudio.play().then(() => {
+                    audioIcon.innerText = '❚❚';
+                    audioSpinner.classList.remove('hidden');
+                    audioStatusText.innerText = 'Now Playing';
+                }).catch(e => {
+                    console.log("Audio play blocked/errored:", e);
+                    alert("Please interact with the page first to enable music playback.");
+                });
+            } else {
+                bgAudio.pause();
+                audioIcon.innerText = '🎵';
+                audioSpinner.classList.add('hidden');
+                audioStatusText.innerText = 'Music Paused';
+            }
+        }
+
+        // Auto-play attempt on first user interaction anywhere on page
+        document.body.addEventListener('click', function initAudioOnce() {
+            if (bgAudio.paused) {
+                bgAudio.play().then(() => {
+                    audioIcon.innerText = '❚❚';
+                    audioSpinner.classList.remove('hidden');
+                    audioStatusText.innerText = 'Now Playing';
+                }).catch(() => {});
+            }
+            document.body.removeEventListener('click', initAudioOnce);
+        }, { once: true });
+
+        function toggleDarkMode() {
+            const htmlEl = document.documentElement;
+            const darkIcon = document.getElementById('dark-mode-icon');
+            if (htmlEl.classList.contains('dark-mode')) {
+                htmlEl.classList.remove('dark-mode');
+                darkIcon.innerText = '🌙';
+                localStorage.setItem('wedding_theme', 'light');
+            } else {
+                htmlEl.classList.add('dark-mode');
+                darkIcon.innerText = '☀️';
+                localStorage.setItem('wedding_theme', 'dark');
+            }
+        }
+
+        if (localStorage.getItem('wedding_theme') === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+            document.getElementById('dark-mode-icon').innerText = '☀️';
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const guestNameParam = urlParams.get('name');
+        if (guestNameParam) {
+            document.getElementById('guest-name').innerText = decodeURIComponent(guestNameParam);
+            const builderPanel = document.getElementById('builder-panel');
+            if (builderPanel) builderPanel.style.display = 'none';
+        }
+
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -30px 0px' };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        const goldContainer = document.getElementById('gold-rain-container');
+        for (let i = 0; i < 10; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('gold-particle');
+            particle.innerText = ['🪷', '◆', '✦'][Math.floor(Math.random() * 3)];
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * -100}vh`;
+            particle.style.animationDuration = `${10 + Math.random() * 5}s`;
+            particle.style.animationDelay = `${Math.random() * 4}s`;
+            goldContainer.appendChild(particle);
+        }
+
+        let venueImageGallery = ["https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"];
+
+        function handleVenueFiles(input) {
+            if (input.files && input.files.length > 0) {
+                venueImageGallery = [];
+                Array.from(input.files).forEach(file => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        venueImageGallery.push(e.target.result);
+                        document.getElementById('disp-venue-img').src = venueImageGallery[0];
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+        }
+
+        function updateCountdown() {
+            const weddingTime = new Date("Nov 28, 2026 08:30:00").getTime();
+            const distance = weddingTime - new Date().getTime();
+            if (distance < 0) return;
+            document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        let activitiesList = [
+            { id: '1', time: '08:30 AM', badge: '08:30 AM (පළමු නැකත)', title: 'Traditional Morning Welcome & Ashtaka', subtitle: 'Auspicious Morning Greetings', description: 'Welcoming esteemed guests with traditional morning Ashtaka poetry, drum beats, and traditional betel leaf offerings.', notes: 'Please arrive promptly by 08:15 AM.' },
+            { id: '2', time: '09:15 AM', badge: '09:15 AM (මඟුල් පෝරුව)', title: 'Poruwa Ceremony & Blessings', subtitle: 'Sacred Poruwa Ritual', description: 'The couple ascends the sacred Kandyan Poruwa during the golden morning hour for traditional blessings and exchange of rings.', notes: 'Photography permitted from designated guest areas.' }
+        ];
+
+        function renderActivities() {
+            const grid = document.getElementById('activities-grid');
+            grid.innerHTML = '';
+            activitiesList.forEach((act, idx) => {
+                const card = document.createElement('div');
+                card.className = 'glass-card p-6 sm:p-8 rounded-3xl flex flex-col justify-between cursor-pointer shadow-xl';
+                card.onclick = () => openActivityModal(idx);
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <span class="text-[11px] uppercase tracking-[0.2em] glass-card px-3.5 py-1.5 rounded-full border border-amber-500/30 text-amber-600 dark:text-amber-300 font-bold inline-block shadow-sm">${act.badge}</span>
+                        <h3 class="font-cinzel text-xl font-bold">${act.title}</h3>
+                        <p class="font-serif-luxury text-sm text-adaptive-muted">${act.description.substring(0, 90)}...</p>
+                    </div>
+                    <div class="pt-4 mt-5 border-t border-amber-500/20 text-xs text-amber-600 dark:text-amber-400 font-semibold flex justify-between">
+                        <span>✨ Morning Heritage</span><span>Tap to view →</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            renderBuilderActivitiesList();
+        }
+        renderActivities();
+
+        function renderBuilderActivitiesList() {
+            const managerList = document.getElementById('builder-activities-manager-list');
+            managerList.innerHTML = '';
+            activitiesList.forEach((act, idx) => {
+                const item = document.createElement('div');
+                item.className = 'flex items-center justify-between glass-card p-2.5 rounded-xl text-xs';
+                item.innerHTML = `
+                    <div class="truncate pr-2"><p class="font-bold text-amber-600 dark:text-amber-300">${act.title}</p><p class="text-[10px] text-adaptive-muted">${act.time}</p></div>
+                    <div class="flex gap-1"><button type="button" onclick="editActivity(${idx})" class="bg-amber-500/20 px-2 py-1 rounded font-semibold">Edit</button><button type="button" onclick="deleteActivity(${idx})" class="bg-red-500/20 text-red-500 px-2 py-1 rounded">✕</button></div>
+                `;
+                managerList.appendChild(item);
+            });
+        }
+
+        function saveActivity() {
+            const title = document.getElementById('new-act-title').value.trim();
+            const time = document.getElementById('new-act-time').value.trim();
+            const editIdx = parseInt(document.getElementById('edit-act-index').value);
+            if (!title || !time) return alert('Enter Title and Time.');
+            if (editIdx >= 0) {
+                activitiesList[editIdx] = { ...activitiesList[editIdx], time, badge: `${time} (නැකත)`, title, description: `A sacred morning celebration dedicated to ${title} at ${time}.`, notes: `Assemble 10 mins prior.` };
+                cancelActivityEdit();
+            } else {
+                activitiesList.push({ id: 'c-' + Date.now(), time, badge: `${time} (නැකත)`, title, subtitle: 'Morning Auspicious Event', description: `A sacred morning celebration dedicated to ${title} at ${time}.`, notes: `Assemble 10 mins prior.` });
+                document.getElementById('new-act-title').value = '';
+                document.getElementById('new-act-time').value = '';
+            }
+            renderActivities();
+        }
+
+        function editActivity(i) {
+            document.getElementById('new-act-title').value = activitiesList[i].title;
+            document.getElementById('new-act-time').value = activitiesList[i].time;
+            document.getElementById('edit-act-index').value = i;
+            document.getElementById('save-act-btn').innerText = '💾 Update Card';
+            document.getElementById('cancel-edit-btn').classList.remove('hidden');
+        }
+
+        function cancelActivityEdit() {
+            document.getElementById('new-act-title').value = '';
+            document.getElementById('new-act-time').value = '';
+            document.getElementById('edit-act-index').value = '-1';
+            document.getElementById('save-act-btn').innerText = '✨ Add Activity Card';
+            document.getElementById('cancel-edit-btn').classList.add('hidden');
+        }
+
+        function deleteActivity(i) {
+            activitiesList.splice(i, 1);
+            renderActivities();
+        }
+
+        const activityModal = document.getElementById('activityModal');
+        function openActivityModal(i) {
+            const d = activitiesList[i];
+            document.getElementById('act-modal-badge').innerText = `✦ ${d.badge} ✦`;
+            document.getElementById('act-modal-title').innerText = d.title;
+            document.getElementById('act-modal-subtitle').innerText = d.subtitle;
+            document.getElementById('act-modal-desc').innerText = d.description;
+            document.getElementById('act-modal-notes').innerText = d.notes;
+            activityModal.classList.add('active');
+        }
+        function closeActivityModal() { activityModal.classList.remove('active'); }
+
+        const builderDrawer = document.getElementById('builder-drawer');
+        function toggleBuilderDrawer() { builderDrawer.classList.toggle('active'); }
+
+        const addGuestModal = document.getElementById('addGuestModal');
+        function toggleAddGuestModal() { addGuestModal.classList.toggle('active'); }
+
+        function generatePersonalizedGuestLink() {
+            const name = document.getElementById('inp-custom-guest-name').value.trim();
+            if (!name) return alert('Enter guest name.');
+            document.getElementById('disp-generated-url').value = `${window.location.origin}${window.location.pathname}?name=${encodeURIComponent(name)}`;
+            document.getElementById('generated-link-box').classList.remove('hidden');
+        }
+
+        function copyGeneratedLink() {
+            const inp = document.getElementById('disp-generated-url');
+            inp.select();
+            navigator.clipboard.writeText(inp.value);
+            alert('✨ Link copied!');
+        }
+
+        function updateLiveContent() {
+            document.getElementById('disp-sinhala-names').innerText = document.getElementById('inp-sinhala-names').value;
+            document.getElementById('disp-english-names').innerText = document.getElementById('inp-english-names').value;
+            document.getElementById('page-title-tag').innerText = document.getElementById('inp-english-names').value + ' — Traditional Morning Wedding';
+            document.getElementById('disp-guest-title').innerText = document.getElementById('inp-guest-title').value;
+            document.getElementById('disp-groom-si').innerText = document.getElementById('inp-groom-si').value;
+            document.getElementById('disp-groom-en').innerText = document.getElementById('inp-groom-en').value;
+            document.getElementById('disp-groom-parents').innerText = document.getElementById('inp-groom-parents').value;
+            document.getElementById('disp-groom-desc').innerText = document.getElementById('inp-groom-desc').value;
+            document.getElementById('disp-bride-si').innerText = document.getElementById('inp-bride-si').value;
+            document.getElementById('disp-bride-en').innerText = document.getElementById('inp-bride-en').value;
+            document.getElementById('disp-bride-parents').innerText = document.getElementById('inp-bride-parents').value;
+            document.getElementById('disp-bride-desc').innerText = document.getElementById('inp-bride-desc').value;
+            document.getElementById('disp-venue-title').innerText = document.getElementById('inp-venue-name').value;
+            document.getElementById('disp-sch-day').innerText = document.getElementById('inp-sch-day').value;
+            document.getElementById('disp-sch-date').innerText = document.getElementById('inp-sch-date').value;
+            document.getElementById('disp-sch-time').innerText = document.getElementById('inp-sch-time').value;
+        }
+
+        let selectedRSVP = "Joyfully Accepts";
+        function selectRSVP(type) {
+            const bAcc = document.getElementById('btn-accept');
+            const bReg = document.getElementById('btn-regret');
+            if(type === 'accept') {
+                selectedRSVP = "Joyfully Accepts";
+                bAcc.className = "text-xs uppercase tracking-[0.2em] font-bold py-4 px-6 rounded-2xl border border-amber-600 bg-amber-500/25 text-amber-600 dark:text-amber-300 shadow-sm ring-2 ring-amber-500/40";
+                bReg.className = "text-xs uppercase tracking-[0.2em] font-bold py-4 px-6 rounded-2xl border border-stone-400/50 bg-stone-500/10 text-adaptive-muted opacity-80 shadow-sm";
+            } else {
+                selectedRSVP = "Regretfully Declines";
+                bReg.className = "text-xs uppercase tracking-[0.2em] font-bold py-4 px-6 rounded-2xl border border-stone-500 bg-stone-500/30 text-white shadow-sm ring-2 ring-stone-400/40";
+                bAcc.className = "text-xs uppercase tracking-[0.2em] font-bold py-4 px-6 rounded-2xl border border-amber-500/50 bg-amber-500/15 text-amber-600 dark:text-amber-300 shadow-sm";
+            }
+        }
+
+        const rsvpModal = document.getElementById('rsvpModal');
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const sBox = document.getElementById('rsvp-success');
+            sBox.classList.remove('hidden');
+            sBox.innerText = `ප්‍රතිචාරය සටහන් විය: ${selectedRSVP}. ස්තූතියි!`;
+            rsvpModal.classList.add('active');
+        });
+        function closeRSVPModal() { rsvpModal.classList.remove('active'); }
+        function handleGuestCardClick() { document.getElementById('guestClickModal').classList.add('active'); }
+        function closeGuestClickModal() { document.getElementById('guestClickModal').classList.remove('active'); }
+    </script>
+</body>
+</html>
