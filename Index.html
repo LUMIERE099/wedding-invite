@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Sachini & Irudaka - Wedding Invitation</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Pacifico&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&family=Changa+One&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        weddingGold: '#C5A059',
+                        weddingDarkGold: '#9A7B38',
+                        weddingCream: '#FDFBF7',
+                        weddingText: '#4A4033',
+                        weddingSubText: '#7A6E5D',
+                        /* Calm Dark Theme Colors */
+                        darkBg: '#121619',
+                        darkCard: '#1A2126',
+                        darkText: '#E6EDF2',
+                        darkSubText: '#9BA3AF',
+                        darkBorder: 'rgba(197, 160, 89, 0.25)'
+                    },
+                    fontFamily: {
+                        playfair: ['Playfair Display', 'serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                        comic: ['Comic Relief', 'cursive', 'sans-serif'],
+                        pacifico: ['Pacifico', 'cursive'],
+                        changa: ['Changa One', 'Impact', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #FDFBF7; color: #4A4033; overflow-x: hidden; position: relative; transition: background-color 0.5s ease, color 0.5s ease; }
+        
+        /* CALM DARK MODE GLOBAL STYLES */
+        .dark body { background-color: #121619 !important; color: #E6EDF2 !important; }
+        .dark header#heroSection { background-color: #0B0E11 !important; }
+        .dark .bg-white { background-color: #1A2126 !important; color: #E6EDF2 !important; border-color: rgba(197, 160, 89, 0.2) !important; }
+        .dark .bg-weddingCream { background-color: #121619 !important; color: #E6EDF2 !important; border-color: rgba(197, 160, 89, 0.2) !important; }
+        .dark .text-weddingText { color: #E6EDF2 !important; }
+        .dark .text-weddingSubText { color: #9BA3AF !important; }
+        .dark footer { background-color: #0B0E11 !important; }
+
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-comic { font-family: 'Comic Relief', cursive, sans-serif; }
+        .font-pacifico { font-family: 'Pacifico', cursive; }
+        .font-changa { font-family: 'Changa One', Impact, sans-serif; letter-spacing: 1px; }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-scale {
+            animation: fadeInScale 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* BIO CHANGE ANIMATION */
+        @keyframes bioChangeAnim {
+            0% { opacity: 0; transform: translateY(12px) scale(0.97); filter: blur(4px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+        }
+        .bio-animate {
+            animation: bioChangeAnim 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* INTRO SCREEN STYLES */
+        #introScreen {
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            background: #121212 !important;
+        }
+        #introScreen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* ANIMATED MUSIC PLAYER STYLES */
+        @keyframes rotateMusicDisc {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .music-disc-spin {
+            animation: rotateMusicDisc 4s linear infinite;
+        }
+        .music-disc-paused {
+            animation-play-state: paused;
+        }
+
+        /* FLOATING PARTICLES - HIGH Z-INDEX & SMALLER SIZES */
+        @keyframes floatParticleFull {
+            0% { transform: translateY(105vh) translateX(0px) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.85; }
+            80% { opacity: 0.85; }
+            100% { transform: translateY(-10vh) translateX(45px) rotate(360deg); opacity: 0; }
+        }
+        .floating-particle {
+            position: fixed;
+            color: #C5A059;
+            pointer-events: none;
+            animation: floatParticleFull 8s infinite linear;
+            z-index: 50 !important;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+        }
+
+        /* ADVANCED STAGGERED ENTRANCE ANIMATIONS */
+        .anim-slide-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-slide-up.revealed { opacity: 1; transform: translateY(0); }
+
+        .anim-blur-in {
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(25px);
+            transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), filter 1.1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-blur-in.revealed { opacity: 1; filter: blur(0px); transform: translateY(0); }
+
+        .anim-scale-in {
+            opacity: 0;
+            transform: scale(0.90);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-scale-in.revealed { opacity: 1; transform: scale(1); }
+
+        .anim-slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-slide-left.revealed { opacity: 1; transform: translateX(0); }
+
+        .anim-slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anim-slide-right.revealed { opacity: 1; transform: translateX(0); }
+
+        /* PULSE GLOW HOVER EFFECTS */
+        .hover-text-glow { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .hover-text-glow:hover {
+            color: #C5A059;
+            text-shadow: 0 4px 20px rgba(197, 160, 89, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .hover-card-float { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .hover-card-float:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(197, 160, 89, 0.25);
+            border-color: rgba(197, 160, 89, 0.5);
+        }
+
+        .slide-img {
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+        }
+
+        @keyframes themeSwitchPop {
+            0% { transform: scale(0.8) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.3) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); opacity: 1; }
+        }
+        .theme-icon-animate {
+            animation: themeSwitchPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+    </style>
+</head>
+<body class="bg-weddingCream text-weddingText antialiased selection:bg-weddingGold selection:text-white">
+
+    <!-- INTRO / WELCOME SCREEN -->
+    <div id="introScreen" class="fixed inset-0 z-[100] bg-[#121212] flex flex-col items-center justify-center text-center p-6">
+        <div class="max-w-md w-full bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-weddingGold/40 shadow-2xl animate-fade-scale space-y-6">
+            <div class="w-16 h-16 mx-auto rounded-full bg-weddingGold/20 border border-weddingGold flex items-center justify-center text-weddingGold text-2xl animate-bounce">
+                <i class="fa-solid fa-ring"></i>
+            </div>
+            
+            <div class="space-y-2">
+                <p class="text-xs uppercase tracking-[0.3em] text-weddingGold font-medium font-comic">Wedding Invitation</p>
+                <h1 id="introNames" class="font-pacifico text-3xl md:text-4xl text-white">Sachini & Irudaka</h1>
+            </div>
+
+            <div id="introGuestBox" class="bg-black/30 p-3 rounded-2xl border border-weddingGold/20">
+                <p class="text-[11px] uppercase tracking-widest text-gray-300 font-comic">Prepared Specially For</p>
+                <p id="introGuestName" class="font-bold text-weddingGold text-sm md:text-base mt-0.5 font-comic">Honored Family & Friends</p>
+            </div>
+
+            <button onclick="openInvitation()" class="w-full bg-weddingGold hover:bg-weddingDarkGold text-white font-medium py-3.5 px-6 rounded-2xl transition duration-300 text-sm shadow-xl flex items-center justify-center gap-2 hover:scale-105 font-comic">
+                <i class="fa-regular fa-envelope-open"></i> Open Invitation
+            </button>
+        </div>
+    </div>
+
+    <!-- FLOATING PARTICLES CONTAINER (Z-INDEX 50 TO DISPLAY ABOVE PHOTOS) -->
+    <div id="floatingParticlesContainer" class="fixed inset-0 overflow-hidden pointer-events-none z-[50]"></div>
+
+    <!-- ANIMATED FLOATING MUSIC PLAYER (BOTTOM-RIGHT) -->
+    <div class="fixed bottom-6 right-6 z-40 flex items-center gap-3 bg-white/90 backdrop-blur-md border border-weddingGold/40 px-4 py-2.5 rounded-full shadow-2xl hover:scale-105 transition duration-300">
+        <audio id="bgMusic" loop>
+            <source id="audioSource" src="https://raw.githubusercontent.com/LUMIERE099/Vipsong/main/Alex%20Warren%20-%20Ordinary.mp3" type="audio/mp3">
+        </audio>
+        
+        <div id="musicDiscIcon" class="w-10 h-10 rounded-full bg-weddingGold text-white flex items-center justify-center shadow-md music-disc-spin music-disc-paused cursor-pointer" onclick="toggleMusic()">
+            <i class="fa-solid fa-compact-disc text-lg"></i>
+        </div>
+        
+        <div class="cursor-pointer" onclick="toggleMusic()">
+            <p class="text-[10px] uppercase tracking-wider text-weddingSubText font-semibold font-comic">Background Song</p>
+            <p id="musicStatusText" class="text-xs font-pacifico text-weddingGold font-bold">Tap to Play 🎵</p>
+        </div>
+
+        <button onclick="toggleMusic()" class="w-8 h-8 rounded-full bg-weddingCream hover:bg-weddingGold text-weddingGold hover:text-white border border-weddingGold/30 flex items-center justify-center transition ml-1 shadow-sm">
+            <i id="musicPlayIcon" class="fa-solid fa-play text-xs"></i>
+        </button>
+    </div>
+
+    <!-- TOP RIGHT CONTROLS CONTAINER -->
+    <div id="hostControlsContainer" class="fixed top-5 right-5 z-40 flex items-center gap-2">
+        <button onclick="toggleDarkMode()" id="themeToggleBtn" title="Toggle Dark/Light Mode" class="w-12 h-12 bg-white dark:bg-darkCard hover:bg-weddingCream text-weddingGold border border-weddingGold/30 rounded-full shadow-2xl flex items-center justify-center transition duration-300 hover:scale-110 text-base">
+            <i id="themeIcon" class="fa-solid fa-moon"></i>
+        </button>
+        
+        <button onclick="openGuestModal()" class="px-4 h-12 bg-white dark:bg-darkCard hover:bg-weddingCream text-weddingGold border border-weddingGold/30 rounded-full shadow-2xl flex items-center justify-center transition duration-300 hover:scale-105 text-xs font-semibold tracking-wider uppercase font-comic">
+            Invite Guest
+        </button>
+        <button onclick="toggleCustomizer()" class="px-4 h-12 bg-weddingGold hover:bg-weddingDarkGold text-white rounded-full shadow-2xl flex items-center justify-center transition duration-300 hover:scale-105 text-xs font-semibold tracking-wider uppercase font-comic">
+            Customize
+        </button>
+    </div>
+
+    <!-- PERSONALIZABLE GUEST LINK MODAL -->
+    <div id="guestModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-darkCard rounded-3xl p-6 md:p-8 max-w-md w-full shadow-2xl border border-weddingGold/30 relative animate-fade-scale" onclick="event.stopPropagation()">
+            <button onclick="closeGuestModal()" class="absolute top-4 right-4 text-weddingSubText hover:text-weddingGold text-xl font-bold transition">×</button>
+            
+            <div class="text-center mb-6">
+                <span class="text-2xl mb-2 inline-block">✨</span>
+                <h3 class="font-changa text-2xl text-weddingText dark:text-darkText mb-1">Personalize Guest Link</h3>
+                <p class="text-xs text-weddingSubText dark:text-darkSubText leading-relaxed font-comic">Enter guest name to generate a custom link for this invitation.</p>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-weddingGold uppercase tracking-wider mb-1 font-comic">Guest Name</label>
+                    <input type="text" id="guestNameInput" placeholder="e.g. Mr. & Mrs. Silva" class="w-full bg-weddingCream dark:bg-darkBg border border-weddingGold/35 dark:border-weddingGold/30 focus:border-weddingGold rounded-2xl px-4 py-3 text-sm outline-none transition font-comic text-weddingText dark:text-darkText">
+                </div>
+
+                <button onclick="generateGuestLink()" class="w-full bg-weddingGold hover:bg-weddingDarkGold text-white font-medium py-3 rounded-2xl transition text-sm shadow-md flex items-center justify-center gap-2 font-comic">
+                    <span>✨</span> Generate Link
+                </button>
+
+                <div id="resultContainer" class="hidden space-y-2 pt-2 border-t border-weddingGold/10">
+                    <label class="block text-xs font-semibold text-weddingSubText dark:text-darkSubText font-comic">Copy Link:</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="generatedLinkOutput" readonly class="w-full bg-weddingCream dark:bg-darkBg border border-weddingGold/30 rounded-xl px-3 text-xs text-weddingSubText dark:text-darkSubText outline-none select-all font-comic">
+                        <button onclick="copyGuestLink()" class="bg-weddingCream dark:bg-darkBg hover:bg-weddingGold text-weddingGold hover:text-white border border-weddingGold/30 px-4 py-2.5 rounded-xl transition text-xs font-medium shrink-0 flex items-center gap-1 shadow-sm font-comic">
+                            <i class="fa-regular fa-clipboard"></i> Copy
+                        </button>
+                    </div>
+                    <p id="copySuccessMsg" class="text-[11px] text-green-500 font-medium text-center hidden font-comic">Copied to clipboard successfully!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOMIZER SIDEBAR PANEL -->
+    <div id="customizerPanel" class="fixed inset-y-0 right-0 w-96 bg-white dark:bg-darkCard shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col border-l border-weddingGold/20">
+        <div class="p-4 bg-weddingGold text-white flex justify-between items-center">
+            <h3 class="font-changa text-lg font-medium"><i class="fa-solid fa-gear mr-2"></i> Website Customizer</h3>
+            <button onclick="toggleCustomizer()" class="text-white hover:text-weddingCream text-xl">×</button>
+        </div>
+        
+        <div class="p-6 overflow-y-auto space-y-6 flex-1 text-xs font-comic text-weddingText dark:text-darkText">
+            <div class="space-y-2 border-b dark:border-weddingGold/20 pb-4">
+                <h4 class="font-bold text-weddingGold uppercase tracking-wider text-sm font-changa">1. Hero Background Image</h4>
+                <input type="file" id="heroImageInput" accept="image/*" onchange="previewHeroImage(event)" class="w-full p-2 border dark:border-weddingGold/30 rounded-xl file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-weddingGold/10 file:text-weddingGold hover:file:bg-weddingGold/20">
+            </div>
+
+            <div class="space-y-2 border-b dark:border-weddingGold/20 pb-4">
+                <h4 class="font-bold text-weddingGold uppercase tracking-wider text-sm font-changa">2. Couple Details & AI Bio</h4>
+                <input type="text" id="inpGroom" placeholder="Groom Name" value="Irudaka" class="w-full p-2 border dark:border-weddingGold/30 dark:bg-darkBg rounded-xl">
+                <input type="text" id="inpBride" placeholder="Bride Name" value="Sachini" class="w-full p-2 border dark:border-weddingGold/30 dark:bg-darkBg rounded-xl">
+                <button onclick="generateAIBio()" class="w-full bg-weddingGold/20 hover:bg-weddingGold/30 text-weddingDarkGold font-medium py-2 rounded-xl transition">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Generate AI Bio (20+ Varieties)
+                </button>
+                <textarea id="inpBio" rows="2" class="w-full p-2 border dark:border-weddingGold/30 dark:bg-darkBg rounded-xl">With hearts full of love and gratitude, we are so happy to celebrate this beautiful chapter of our lives with you.</textarea>
+                <label class="block text-weddingSubText dark:text-darkSubText font-medium pt-2">Hero Short Description:</label>
+                <textarea id="inpHeroDesc" rows="2" class="w-full p-2 border dark:border-weddingGold/30 dark:bg-darkBg rounded-xl">Together with our families, we invite you to celebrate our special day.</textarea>
+            </div>
+
+            <div class="space-y-2 border-b dark:border-weddingGold/20 pb-4">
+                <h4 class="font-bold text-weddingGold uppercase tracking-wider text-sm font-changa">3. Parents Details</h4>
+                <input type="text" id="inpGroomParents" placeholder="Groom's Parents" value="MR & MRS Perera" class="w-full p-2 border dark:border-weddingGold/30 dark:bg-darkBg rounded-xl">
+                <input type="text" id="inpBrideParents" placeholder="Bride's Parents" value="MR & MRS Edirisinghe" class="w-full p-2 border dark:border-weddingGold/30 dark:bg-darkBg rounded-xl">
+            </div>
+
+            <div class="space-y-2 border-b dark:border-weddingGold/20 pb-4">
+                <h4 class="font-bold text-weddingGold uppercase tracking-wider text-sm font-changa">4. Venue & Date</h4>
+                <input type="date" id="inpDate" value="2027-01-10" class="w-full p-2 border dark:border-weddingGold/30 dark:bg-darkBg rounded-xl">
+                <input type="text" id="inpTime" value="10:00 AM Onwards" class="w-full p-2 border dark:border-weddingGold/30 dark:bg-darkBg rounded-xl">
+                <input type="text" id="inpVenueName" value="The Kingsbury Colombo" class="w-full p-2 border dark:border-weddingGold/30 dark:bg-darkBg rounded-xl">
+                <input type="text" id="inpMapLink" value="https://maps.app.goo.gl/yFwCHca7hrCPBB8Q9" placeholder="Google Maps Link" class="w-full p-2 border dark:border-weddingGold/30 dark:bg-darkBg rounded-xl">
+                <textarea id="inpVenueAddress" rows="2" placeholder="Venue Address" class="w-full p-2 border dark:border-weddingGold/30 dark:bg-darkBg rounded-xl">48 Janadhipathi Mawatha, Colombo</textarea>
+            </div>
+
+            <div class="space-y-3 border-b dark:border-weddingGold/20 pb-4">
+                <h4 class="font-bold text-weddingGold uppercase tracking-wider text-sm font-changa">5. Moments of Love Photos</h4>
+                <p class="text-[11px] text-weddingSubText dark:text-darkSubText">Select multiple photos for each grid slot slideshow:</p>
+                <div class="space-y-2 bg-weddingCream dark:bg-darkBg p-3 rounded-2xl border border-weddingGold/20">
+                    <div>
+                        <label class="block font-semibold mb-1">Slot 1 (Big Left Photo):</label>
+                        <input type="file" id="slot0Input" accept="image/*" multiple class="w-full p-1 border rounded-xl bg-white dark:bg-darkCard file:mr-2 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-[10px] file:font-semibold file:bg-weddingGold/10 file:text-weddingGold">
+                    </div>
+                    <div>
+                        <label class="block font-semibold mb-1">Slot 2 (Top Right 1):</label>
+                        <input type="file" id="slot1Input" accept="image/*" multiple class="w-full p-1 border rounded-xl bg-white dark:bg-darkCard file:mr-2 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-[10px] file:font-semibold file:bg-weddingGold/10 file:text-weddingGold">
+                    </div>
+                    <div>
+                        <label class="block font-semibold mb-1">Slot 3 (Top Right 2):</label>
+                        <input type="file" id="slot2Input" accept="image/*" multiple class="w-full p-1 border rounded-xl bg-white dark:bg-darkCard file:mr-2 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-[10px] file:font-semibold file:bg-weddingGold/10 file:text-weddingGold">
+                    </div>
+                    <div>
+                        <label class="block font-semibold mb-1">Slot 4 (Bottom Right 1):</label>
+                        <input type="file" id="slot3Input" accept="image/*" multiple class="w-full p-1 border rounded-xl bg-white dark:bg-darkCard file:mr-2 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-[10px] file:font-semibold file:bg-weddingGold/10 file:text-weddingGold">
+                    </div>
+                    <div>
+                        <label class="block font-semibold mb-1">Slot 5 (Bottom Right 2):</label>
+                        <input type="file" id="slot4Input" accept="image/*" multiple class="w-full p-1 border rounded-xl bg-white dark:bg-darkCard file:mr-2 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-[10px] file:font-semibold file:bg-weddingGold/10 file:text-weddingGold">
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3 border-b dark:border-weddingGold/20 pb-4">
+                <h4 class="font-bold text-weddingGold uppercase tracking-wider text-sm font-changa">6. Wedding Lineup (Itinerary)</h4>
+                <div class="bg-weddingCream dark:bg-darkBg p-3 rounded-2xl space-y-2 border border-weddingGold/20">
+                    <input type="text" id="newItineraryTime" placeholder="Time (e.g. 9:55 AM)" class="w-full p-2 border dark:border-weddingGold/30 dark:bg-darkCard rounded-xl">
+                    <input type="text" id="newItineraryTitle" placeholder="Activity Title" class="w-full p-2 border dark:border-weddingGold/30 dark:bg-darkCard rounded-xl">
+                    <div class="flex gap-2">
+                        <input type="text" id="newItineraryDesc" placeholder="Description" class="flex-1 p-2 border dark:border-weddingGold/30 dark:bg-darkCard rounded-xl">
+                        <button onclick="generateAIItineraryDesc()" type="button" class="bg-weddingGold/20 hover:bg-weddingGold/30 text-weddingDarkGold px-3 py-1 rounded-xl font-medium shrink-0"><i class="fa-solid fa-wand-magic-sparkles"></i> AI</button>
+                    </div>
+                    <button onclick="addItineraryItem()" type="button" class="w-full bg-weddingGold hover:bg-weddingDarkGold text-white font-medium py-2 rounded-xl transition"><i class="fa-solid fa-plus mr-1"></i> Add Activity</button>
+                </div>
+                <div id="itineraryEditorList" class="space-y-2 max-h-44 overflow-y-auto pr-1"></div>
+            </div>
+
+            <button onclick="applyCustomizations()" class="w-full bg-weddingGold hover:bg-weddingDarkGold text-white font-medium py-3 rounded-xl shadow-md transition text-sm">
+                Save & Apply Changes
+            </button>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header id="heroSection" class="relative h-screen flex flex-col justify-between items-center text-center p-6 bg-[#121212] bg-cover bg-center transition-all duration-700">
+        <div class="w-full pt-8 animate-fade-scale">
+            <p class="text-xs tracking-[0.3em] uppercase text-weddingCream font-medium font-comic hover-text-glow inline-block cursor-pointer">Together With Their Families</p>
+        </div>
+        
+        <div class="my-auto animate-fade-scale" style="animation-delay: 0.2s;">
+            <h1 id="heroNames" class="font-pacifico text-5xl md:text-7xl text-white mb-3 drop-shadow-md hover-text-glow cursor-pointer transition">Sachini & Irudaka</h1>
+            <p id="displayHeroDesc" class="text-weddingCream text-sm md:text-base max-w-md mx-auto drop-shadow font-light px-4 hover-text-glow cursor-pointer mb-5 font-comic">
+                Together with our families, we invite you to celebrate our special day.
+            </p>
+            <div id="guestSpecificBanner" class="inline-block bg-white/90 dark:bg-darkCard/90 backdrop-blur-md border border-weddingGold/60 px-6 py-3.5 rounded-full shadow-2xl">
+                <p class="text-xs md:text-sm tracking-[0.2em] uppercase text-weddingSubText dark:text-darkSubText font-light font-comic">
+                    Prepared Specially For <span id="dynamicGuestName" class="font-bold text-[#2A241E] dark:text-darkText text-sm md:text-base font-comic">Honored Family & Friends</span>
+                </p>
+            </div>
+        </div>
+
+        <div id="invitorsSection" class="w-full pb-8 animate-fade-scale" style="animation-delay: 0.4s;">
+            <div class="max-w-md mx-auto bg-white/95 dark:bg-darkCard/95 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-weddingGold/20 hover-card-float">
+                <p class="text-xs uppercase tracking-widest text-weddingGold font-semibold mb-2 hover-text-glow inline-block font-comic">With Love</p>
+                <p id="displayGroomParents" class="text-sm font-medium hover-text-glow cursor-pointer font-comic">MR & MRS Perera</p>
+                <p class="text-xs text-weddingSubText dark:text-darkSubText my-1 font-comic">together with</p>
+                <p id="displayBrideParents" class="text-sm font-medium mb-3 hover-text-glow cursor-pointer font-comic">MR & MRS Edirisinghe</p>
+                <p class="text-xs text-weddingSubText dark:text-darkSubText leading-relaxed font-comic">Request the honour of your presence to celebrate the marriage of their loving children</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-2xl mx-auto px-4 py-12 space-y-12 relative z-20">
+
+        <!-- COUNTDOWN TIMER -->
+        <section class="anim-slide-up bg-white rounded-3xl p-6 shadow-sm border border-weddingGold/20 text-center hover-card-float">
+            <p class="text-xs uppercase tracking-[0.25em] text-weddingGold font-semibold mb-3 hover-text-glow inline-block font-changa">Countdown to Forever</p>
+            <div id="countdown" class="grid grid-cols-4 gap-2 text-weddingText dark:text-darkText">
+                <div class="bg-weddingCream dark:bg-darkBg p-3 rounded-2xl hover:scale-105 transition duration-300"><span id="days" class="font-changa text-2xl font-bold text-weddingGold block">00</span><span class="text-[10px] uppercase font-comic">Days</span></div>
+                <div class="bg-weddingCream dark:bg-darkBg p-3 rounded-2xl hover:scale-105 transition duration-300"><span id="hours" class="font-changa text-2xl font-bold text-weddingGold block">00</span><span class="text-[10px] uppercase font-comic">Hours</span></div>
+                <div class="bg-weddingCream dark:bg-darkBg p-3 rounded-2xl hover:scale-105 transition duration-300"><span id="minutes" class="font-changa text-2xl font-bold text-weddingGold block">00</span><span class="text-[10px] uppercase font-comic">Mins</span></div>
+                <div class="bg-weddingCream dark:bg-darkBg p-3 rounded-2xl hover:scale-105 transition duration-300"><span id="seconds" class="font-changa text-2xl font-bold text-weddingGold block">00</span><span class="text-[10px] uppercase font-comic">Secs</span></div>
+            </div>
+        </section>
+
+        <!-- PHOTO GRID WITH AUTO SLIDESHOW -->
+        <section class="space-y-6">
+            <div class="text-center anim-blur-in">
+                <p class="text-xs uppercase tracking-[0.25em] text-weddingGold font-semibold mb-1 hover-text-glow inline-block font-comic">Our Celebration</p>
+                <h2 class="font-changa text-3xl text-weddingText dark:text-darkText hover-text-glow cursor-pointer">Moments of Love</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                <div onclick="openLightbox('gridImg0')" class="anim-slide-left rounded-3xl overflow-hidden shadow-lg h-[400px] md:h-[580px] bg-black relative cursor-pointer hover-card-float">
+                    <img id="gridImg0" src="aluth2.jpg" alt="Moments of Love" class="w-full h-full object-cover slide-img">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-magnifying-glass-plus text-3xl drop-shadow"></i>
+                    </div>
+                </div>
+
+                <div class="anim-slide-right flex flex-col gap-4">
+                    <div onclick="openLightbox('gridImg1')" class="rounded-3xl overflow-hidden shadow-lg h-[130px] md:h-[136px] bg-black relative cursor-pointer hover-card-float">
+                        <img id="gridImg1" src="aluth5.jpg" alt="Moments of Love" class="w-full h-full object-cover slide-img">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-magnifying-glass-plus text-xl drop-shadow"></i>
+                        </div>
+                    </div>
+                    <div onclick="openLightbox('gridImg2')" class="rounded-3xl overflow-hidden shadow-lg h-[130px] md:h-[136px] bg-black relative cursor-pointer hover-card-float">
+                        <img id="gridImg2" src="aluth2.jpg" alt="Moments of Love" class="w-full h-full object-cover slide-img">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-magnifying-glass-plus text-xl drop-shadow"></i>
+                        </div>
+                    </div>
+                    <div onclick="openLightbox('gridImg3')" class="rounded-3xl overflow-hidden shadow-lg h-[130px] md:h-[136px] bg-black relative cursor-pointer hover-card-float">
+                        <img id="gridImg3" src="aluth5.jpg" alt="Moments of Love" class="w-full h-full object-cover slide-img">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-magnifying-glass-plus text-xl drop-shadow"></i>
+                        </div>
+                    </div>
+                    <div onclick="openLightbox('gridImg4')" class="rounded-3xl overflow-hidden shadow-lg h-[130px] md:h-[136px] bg-black relative cursor-pointer hover-card-float">
+                        <img id="gridImg4" src="aluth2.jpg" alt="Moments of Love" class="w-full h-full object-cover slide-img">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-magnifying-glass-plus text-xl drop-shadow"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VENUE & DATE SECTION -->
+        <section id="venue" class="anim-scale-in bg-white rounded-3xl p-8 shadow-sm border border-weddingGold/20 hover-card-float">
+            <div class="text-center mb-8">
+                <span class="text-weddingGold text-lg mb-1 inline-block animate-bounce"><i class="fa-solid fa-ring"></i></span>
+                <p class="text-xs uppercase tracking-[0.25em] text-weddingGold font-semibold hover-text-glow inline-block font-comic">Save The Date</p>
+                <h2 class="font-changa text-3xl text-weddingText dark:text-darkText hover-text-glow cursor-pointer">Wedding Ceremony</h2>
+            </div>
+
+            <div class="space-y-6">
+                <div class="anim-slide-up flex items-start gap-4 pb-6 border-b border-weddingGold/10 group">
+                    <div class="w-12 h-12 rounded-full bg-weddingCream dark:bg-darkBg flex items-center justify-center text-weddingGold text-xl shrink-0 shadow-inner group-hover:bg-weddingGold group-hover:text-white transition duration-300"><i class="fa-regular fa-calendar-days"></i></div>
+                    <div class="hover-text-glow cursor-pointer">
+                        <p class="text-xs uppercase tracking-wider text-weddingSubText dark:text-darkSubText font-semibold font-comic">Date</p>
+                        <p id="displayDate" class="font-changa text-lg text-weddingText dark:text-darkText mt-0.5">10 January 2027</p>
+                    </div>
+                </div>
+
+                <div class="anim-slide-up flex items-start gap-4 pb-6 border-b border-weddingGold/10 group" style="transition-delay: 150ms;">
+                    <div class="w-12 h-12 rounded-full bg-weddingCream dark:bg-darkBg flex items-center justify-center text-weddingGold text-xl shrink-0 shadow-inner group-hover:bg-weddingGold group-hover:text-white transition duration-300"><i class="fa-regular fa-clock"></i></div>
+                    <div class="hover-text-glow cursor-pointer">
+                        <p class="text-xs uppercase tracking-wider text-weddingSubText dark:text-darkSubText font-semibold font-comic">Time</p>
+                        <p id="displayTime" class="font-changa text-lg text-weddingText dark:text-darkText mt-0.5">10:00 AM Onwards</p>
+                    </div>
+                </div>
+
+                <div class="anim-slide-up flex items-start gap-4 pb-2 group" style="transition-delay: 300ms;">
+                    <div class="w-12 h-12 rounded-full bg-weddingCream dark:bg-darkBg flex items-center justify-center text-weddingGold text-xl shrink-0 shadow-inner group-hover:bg-weddingGold group-hover:text-white transition duration-300"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="hover-text-glow cursor-pointer">
+                        <p class="text-xs uppercase tracking-wider text-weddingSubText dark:text-darkSubText font-semibold font-comic">Venue</p>
+                        <p id="displayVenueName" class="font-changa text-lg text-weddingText dark:text-darkText mt-0.5">The Kingsbury Colombo</p>
+                        <p id="displayVenueAddress" class="text-xs text-weddingSubText dark:text-darkSubText mt-1 font-comic">48 Janadhipathi Mawatha, Colombo</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center anim-blur-in">
+                <a id="displayMapBtn" href="https://maps.app.goo.gl/yFwCHca7hrCPBB8Q9" target="_blank" class="inline-flex items-center justify-center gap-2 w-full bg-weddingCream dark:bg-darkBg hover:bg-weddingGold text-weddingGold hover:text-white border border-weddingGold/30 font-medium py-3 px-6 rounded-2xl transition duration-300 text-sm shadow-sm hover:scale-[1.02] font-comic">
+                    <i class="fa-solid fa-map-location-dot"></i> View Location on Maps
+                </a>
+            </div>
+        </section>
+
+        <!-- ITINERARY SECTION -->
+        <section class="anim-slide-up bg-white rounded-3xl p-8 shadow-sm border border-weddingGold/20 hover-card-float">
+            <div class="text-center mb-10">
+                <p class="text-xs uppercase tracking-[0.25em] text-weddingGold font-semibold hover-text-glow inline-block font-comic">Our Celebration</p>
+                <h2 class="font-changa text-3xl text-weddingText dark:text-darkText hover-text-glow cursor-pointer">The Wedding Lineup</h2>
+            </div>
+            <div id="itineraryContainer" class="relative pl-6 space-y-8 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-weddingGold/30"></div>
+        </section>
+
+        <!-- SPECIAL NOTE SECTION -->
+        <section class="anim-blur-in bg-white rounded-3xl p-8 shadow-sm border border-weddingGold/20 text-center relative overflow-hidden hover-card-float">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-weddingGold to-transparent"></div>
+            <p class="text-xs uppercase tracking-[0.25em] text-weddingGold font-semibold mb-2 hover-text-glow inline-block font-comic">A Special Note</p>
+            <h2 class="font-changa text-3xl text-weddingText dark:text-darkText mb-6 hover-text-glow cursor-pointer">To Our Lovely Guests</h2>
+            <p id="displayBio" class="text-weddingSubText dark:text-darkSubText leading-relaxed mb-6 text-sm md:text-base hover-text-glow cursor-pointer font-comic">
+                With hearts full of love and gratitude, we are so happy to celebrate this beautiful chapter of our lives with you. Thank you for your love, your blessings, and for being part of our journey.
+            </p>
+            <p class="text-xs text-weddingSubText dark:text-darkSubText italic mb-1 font-comic">With all our love,</p>
+            <p id="footerNames" class="font-pacifico text-xl text-weddingGold font-semibold hover-text-glow cursor-pointer inline-block">Sachini & Irudaka</p>
+        </section>
+
+        <!-- RSVP SECTION -->
+        <section id="rsvp" class="anim-slide-up bg-white rounded-3xl p-8 shadow-sm border border-weddingGold/20 hover-card-float">
+            <div class="text-center mb-6">
+                <span class="text-weddingGold text-lg mb-1 inline-block"><i class="fa-regular fa-envelope-open"></i></span>
+                <p class="text-xs uppercase tracking-[0.25em] text-weddingGold font-semibold hover-text-glow inline-block font-comic">Be Our Guest</p>
+                <h2 class="font-changa text-3xl text-weddingText dark:text-darkText hover-text-glow cursor-pointer">Respond to Invitation</h2>
+            </div>
+
+            <form onsubmit="handleRSVP(event)" class="space-y-4 font-comic">
+                <div>
+                    <input type="text" id="guestName" required placeholder="Your full name" class="w-full bg-weddingCream dark:bg-darkBg border border-weddingGold/30 focus:border-weddingGold rounded-2xl px-4 py-3.5 text-sm outline-none transition focus:scale-[1.01] text-weddingText dark:text-darkText">
+                </div>
+                <div>
+                    <input type="email" id="guestEmail" required placeholder="Your Gmail address" class="w-full bg-weddingCream dark:bg-darkBg border border-weddingGold/30 focus:border-weddingGold rounded-2xl px-4 py-3.5 text-sm outline-none transition focus:scale-[1.01] text-weddingText dark:text-darkText">
+                </div>
+                <div class="grid grid-cols-2 gap-4 pt-2">
+                    <button type="submit" onclick="setAttendance('Accept')" class="flex items-center justify-center gap-2 bg-weddingGold hover:bg-weddingDarkGold text-white font-medium py-3.5 px-4 rounded-2xl transition text-sm shadow-sm hover:scale-[1.02]">
+                        <i class="fa-solid fa-check"></i> Accept
+                    </button>
+                    <button type="submit" onclick="setAttendance('Decline')" class="flex items-center justify-center gap-2 bg-transparent hover:bg-weddingGold/10 text-weddingText dark:text-darkText border border-weddingGold/30 font-medium py-3.5 px-4 rounded-2xl transition text-sm hover:scale-[1.02]">
+                        <i class="fa-solid fa-xmark"></i> Decline
+                    </button>
+                </div>
+            </form>
+            <div id="rsvpMessage" class="hidden mt-4 text-center text-sm font-medium text-weddingGold font-comic"></div>
+        </section>
+
+    </main>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeLightbox()">
+        <div class="relative max-w-4xl w-full max-h-[90vh] flex items-center justify-center" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white hover:text-weddingGold text-3xl font-bold p-2 transition">×</button>
+            <img id="lightboxImg" src="" alt="Zoomed Photo" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl border border-weddingGold/30 animate-fade-scale">
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-12 text-xs text-gray-300 bg-[#0B0E11] border-t border-weddingGold/30 mt-16 anim-slide-up relative z-20 shadow-2xl font-comic">
+        <div class="max-w-2xl mx-auto px-4 space-y-4">
+            <p id="footerTitleNames" class="font-pacifico text-lg text-weddingGold mb-1 hover-text-glow cursor-pointer inline-block">Sachini & Irudaka</p>
+            <p id="footerSubText" class="mb-4 text-gray-400">10 January 2027 • The Kingsbury Colombo</p>
+            
+            <div class="pt-4 border-t border-weddingGold/20 space-y-3">
+                <p class="font-changa text-sm tracking-widest uppercase font-bold text-white hover-text-glow cursor-pointer inline-block">Lumière</p>
+                <div class="flex justify-center items-center gap-5 text-lg">
+                    <a href="https://www.instagram.com/lumiere_coo/" target="_blank" class="w-9 h-9 rounded-full bg-neutral-800 border border-weddingGold/40 flex items-center justify-center text-weddingGold hover:bg-weddingGold hover:text-white transition duration-300 shadow-sm hover:scale-125"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@lumiere_coo" target="_blank" class="w-9 h-9 rounded-full bg-neutral-800 border border-weddingGold/40 flex items-center justify-center text-weddingGold hover:bg-weddingGold hover:text-white transition duration-300 shadow-sm hover:scale-125"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61594020129863" target="_blank" class="w-9 h-9 rounded-full bg-neutral-800 border border-weddingGold/40 flex items-center justify-center text-weddingGold hover:bg-weddingGold hover:text-white transition duration-300 shadow-sm hover:scale-125"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+                <p class="text-[11px] text-gray-500 pt-1">© 2026 Lumière. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function openInvitation() {
+            const intro = document.getElementById('introScreen');
+            intro.classList.add('fade-out');
+            
+            const music = document.getElementById('bgMusic');
+            if(music) {
+                music.play().then(() => {
+                    updateMusicUI(true);
+                }).catch(e => console.log('Audio autoplay restricted by browser policy'));
+            }
+        }
+
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            if (music.paused) {
+                music.play().then(() => {
+                    updateMusicUI(true);
+                }).catch(e => alert('Playback error or loading audio from GitHub.'));
+            } else {
+                music.pause();
+                updateMusicUI(false);
+            }
+        }
+
+        function updateMusicUI(isPlaying) {
+            const disc = document.getElementById('musicDiscIcon');
+            const statusText = document.getElementById('musicStatusText');
+            const playIcon = document.getElementById('musicPlayIcon');
+            
+            if (isPlaying) {
+                disc.classList.remove('music-disc-paused');
+                statusText.textContent = "Now Playing ♪";
+                playIcon.className = "fa-solid fa-pause text-xs";
+            } else {
+                disc.classList.add('music-disc-paused');
+                statusText.textContent = "Paused";
+                playIcon.className = "fa-solid fa-play text-xs";
+            }
+        }
+
+        function toggleDarkMode() {
+            const htmlEl = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            
+            themeIcon.classList.add('theme-icon-animate');
+            setTimeout(() => {
+                themeIcon.classList.remove('theme-icon-animate');
+            }, 500);
+
+            if (htmlEl.classList.contains('dark')) {
+                htmlEl.classList.remove('dark');
+                themeIcon.className = "fa-solid fa-moon";
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlEl.classList.add('dark');
+                themeIcon.className = "fa-solid fa-sun text-yellow-400";
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                window.addEventListener('DOMContentLoaded', () => {
+                    const icon = document.getElementById('themeIcon');
+                    if(icon) icon.className = "fa-solid fa-sun text-yellow-400";
+                });
+            }
+        })();
+
+        function initFloatingParticles() {
+            const container = document.getElementById('floatingParticlesContainer');
+            const icons = ['fa-heart', 'fa-sparkles', 'fa-star', 'fa-circle'];
+            const particleCount = 24;
+
+            for (let i = 0; i < particleCount; i++) {
+                const span = document.createElement('div');
+                span.className = 'floating-particle';
+                const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+                span.innerHTML = `<i class="fa-solid ${randomIcon}"></i>`;
+                span.style.left = `${Math.random() * 100}%`;
+                span.style.animationDuration = `${6 + Math.random() * 6}s`;
+                span.style.animationDelay = `${Math.random() * 8}s`;
+                span.style.fontSize = `${10 + Math.random() * 10}px`;
+                container.appendChild(span);
+            }
+        }
+        initFloatingParticles();
+
+        function toggleCustomizer() {
+            document.getElementById('customizerPanel').classList.toggle('translate-x-full');
+        }
+
+        function openGuestModal() {
+            document.getElementById('guestModal').classList.remove('hidden');
+            document.getElementById('guestModal').classList.add('flex');
+        }
+
+        function closeGuestModal() {
+            document.getElementById('guestModal').classList.remove('flex');
+            document.getElementById('guestModal').classList.add('hidden');
+        }
+
+        function generateGuestLink() {
+            const name = document.getElementById('guestNameInput').value.trim();
+            if(!name) { alert('Please enter a guest name.'); return; }
+            
+            const baseUrl = window.location.href.split('?')[0];
+            const encodedName = encodeURIComponent(name);
+            const customLink = `${baseUrl}?guest=${encodedName}`;
+            
+            document.getElementById('generatedLinkOutput').value = customLink;
+            document.getElementById('resultContainer').classList.remove('hidden');
+            document.getElementById('copySuccessMsg').classList.add('hidden');
+        }
+
+        function copyGuestLink() {
+            const linkInput = document.getElementById('generatedLinkOutput');
+            linkInput.select();
+            linkInput.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(linkInput.value);
+            
+            const successMsg = document.getElementById('copySuccessMsg');
+            successMsg.classList.remove('hidden');
+            setTimeout(() => { successMsg.classList.add('hidden'); }, 3000);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const guest = urlParams.get('guest');
+            if(guest) {
+                const decodedGuest = decodeURIComponent(guest);
+                document.getElementById('dynamicGuestName').textContent = decodedGuest;
+                document.getElementById('introGuestName').textContent = decodedGuest;
+            }
+        });
+
+        function previewHeroImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('heroSection').style.backgroundImage = `url('${e.target.result}')`;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        let photoPools = [
+            ['aluth2.jpg', 'aluth5.jpg', 'aluth2.jpg'],
+            ['aluth5.jpg', 'aluth2.jpg', 'aluth5.jpg'],
+            ['aluth2.jpg', 'aluth5.jpg', 'aluth2.jpg'],
+            ['aluth5.jpg', 'aluth2.jpg', 'aluth5.jpg'],
+            ['aluth2.jpg', 'aluth5.jpg', 'aluth2.jpg']
+        ];
+
+        let slideIndexes = [0, 0, 0, 0, 0];
+
+        function startGridSlideshows() {
+            for (let i = 0; i < 5; i++) {
+                setInterval(() => {
+                    const imgEl = document.getElementById(`gridImg${i}`);
+                    if(imgEl && photoPools[i].length > 0) {
+                        slideIndexes[i] = (slideIndexes[i] + 1) % photoPools[i].length;
+                        imgEl.style.opacity = 0;
+                        setTimeout(() => {
+                            imgEl.src = photoPools[i][slideIndexes[i]];
+                            imgEl.style.opacity = 1;
+                        }, 400);
+                    }
+                }, 3500 + (i * 700));
+            }
+        }
+
+        let itineraryList = [
+            { time: "9:55 AM", title: "Poruwa Ceremony", desc: "Traditional auspicious Poruwa rituals uniting the couple.", icon: "fa-clock" },
+            { time: "12:00 PM", title: "Lunch", desc: "A lavish feast and grand buffet spread for our cherished guests.", icon: "fa-utensils" },
+            { time: "1:00 PM", title: "Dancing Floor Starts", desc: "Music beats kick off to fill the dance floor with joyful celebrations.", icon: "fa-music" },
+            { time: "3:30 PM", title: "Going Away", desc: "Warm send-off as the newly married couple departs for their new journey.", icon: "fa-car-side" }
+        ];
+
+        function renderItinerary() {
+            document.getElementById('itineraryContainer').innerHTML = itineraryList.map(item => `
+                <div class="relative group hover:translate-x-1 transition duration-300">
+                    <div class="absolute -left-[31px] top-1 w-5 h-5 rounded-full bg-weddingCream dark:bg-darkBg border-2 border-weddingGold flex items-center justify-center text-[10px] text-weddingGold group-hover:bg-weddingGold group-hover:text-white transition"><i class="fa-solid fa-circle text-[6px]"></i></div>
+                    <div class="text-weddingGold text-xs font-semibold uppercase tracking-wider mb-1 font-comic"><i class="fa-solid ${item.icon || 'fa-clock'} mr-1"></i> ${item.time}</div>
+                    <h3 class="font-changa text-xl text-weddingText dark:text-darkText font-medium hover-text-glow">${item.title}</h3>
+                    ${item.desc ? `<p class="text-xs text-weddingSubText dark:text-darkSubText mt-0.5 font-comic">${item.desc}</p>` : ''}
+                </div>
+            `).join('');
+
+            document.getElementById('itineraryEditorList').innerHTML = itineraryList.map((item, index) => `
+                <div class="flex items-center justify-between bg-white dark:bg-darkCard p-2 rounded-xl border border-weddingGold/20 text-[11px] font-comic">
+                    <div class="truncate pr-2"><span class="font-bold text-weddingGold">${item.time}</span> - <span class="font-medium">${item.title}</span></div>
+                    <button onclick="removeItineraryItem(${index})" type="button" class="text-red-400 hover:text-red-600 p-1 shrink-0"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            `).join('');
+        }
+
+        function addItineraryItem() {
+            const time = document.getElementById('newItineraryTime').value.trim();
+            const title = document.getElementById('newItineraryTitle').value.trim();
+            const desc = document.getElementById('newItineraryDesc').value.trim();
+            if(!time || !title) { alert('Please provide at least a time and activity title.'); return; }
+            let icon = "fa-clock", lt = title.toLowerCase();
+            if(lt.includes('lunch') || lt.includes('dinner')) icon = "fa-utensils";
+            else if(lt.includes('dance') || lt.includes('music')) icon = "fa-music";
+            else if(lt.includes('going') || lt.includes('car')) icon = "fa-car-side";
+            itineraryList.push({ time, title, desc, icon });
+            document.getElementById('newItineraryTime').value = '';
+            document.getElementById('newItineraryTitle').value = '';
+            document.getElementById('newItineraryDesc').value = '';
+            renderItinerary();
+        }
+
+        function removeItineraryItem(index) { itineraryList.splice(index, 1); renderItinerary(); }
+
+        function generateAIItineraryDesc() {
+            const ai = [`An unforgettable moment filled with joy and memories.`, `A wonderful gathering designed to celebrate togetherness.`, `Join in the celebration as we share wonderful moments.`];
+            document.getElementById('newItineraryDesc').value = ai[Math.floor(Math.random() * ai.length)];
+        }
+
+        function generateAIBio() {
+            const g = document.getElementById('inpGroom').value || 'Irudaka';
+            const b = document.getElementById('inpBride').value || 'Sachini';
+            
+            const bios = [
+                `Two hearts, two souls, bound by love. Join ${b} & ${g} as they begin their lifelong journey.`,
+                `With joyous hearts, ${b} & ${g} invite you to witness their forever.`,
+                `A celebration of love, laughter, and happily ever after. ${b} and ${g} can't wait to share this special day with you.`,
+                `From this day forward, you shall not walk alone. ${b} & ${g} warmly invite you to celebrate their sacred union.`,
+                `True love stories never have endings. Come celebrate the magical wedding of ${b} and ${g}.`,
+                `Side by side, hand in hand, ${b} and ${g} are ready to take on the world together. Be a part of their joyous beginning!`,
+                `Love brought them together, and love will keep them united forever. Join ${b} & ${g} in their celebration.`,
+                `The best is yet to come. Come witness the gorgeous wedding union of ${b} and ${g}.`,
+                `Moments of pure joy, memories for a lifetime. ${b} & ${g} cordially invite you to share their happiness.`,
+                `Two different paths converging into one beautiful road. Celebrate ${b} & ${g}'s wedding day with us.`,
+                `Where there is love, there is life. Join ${b} and ${g} as they exchange their lifelong vows of love.`,
+                `A lifetime of love begins right here. ${b} & ${g} would be deeply honored by your cherished presence.`,
+                `Every love story is beautiful, but ${b} and ${g}'s is their favorite. Come be a vibrant part of it!`,
+                `Hand in heart, soul to soul. ${b} & ${g} invite you to celebrate the wonderful start of their forever.`,
+                `To have and to hold, from this day forward. Witness the blessed wedding ceremony of ${b} and ${g}.`,
+                `A day filled with blessings, smiles, and endless love. Join ${b} and ${g} as they tie the knot.`,
+                `Cheers to love, laughter, and happily ever after! Celebrate this magical milestone with ${b} & ${g}.`,
+                `Surrounded by family and friends, ${b} & ${g} take their next big step. Your presence means the world to them!`,
+                `A promise of forever, a lifetime of pure happiness. Join ${b} and ${g} on their wedding celebration day.`,
+                `Let's celebrate the grand magic of true love as ${b} & ${g} officially begin their new chapter together.`
+            ];
+
+            const randomBio = bios[Math.floor(Math.random() * bios.length)];
+            
+            document.getElementById('inpBio').value = randomBio;
+            const displayBioEl = document.getElementById('displayBio');
+            displayBioEl.textContent = randomBio;
+
+            displayBioEl.classList.remove('bio-animate');
+            void displayBioEl.offsetWidth; 
+            displayBioEl.classList.add('bio-animate');
+        }
+
+        function applyCustomizations() {
+            const data = {
+                groom: document.getElementById('inpGroom').value,
+                bride: document.getElementById('inpBride').value,
+                bio: document.getElementById('inpBio').value,
+                heroDesc: document.getElementById('inpHeroDesc').value,
+                groomParents: document.getElementById('inpGroomParents').value,
+                brideParents: document.getElementById('inpBrideParents').value,
+                date: document.getElementById('inpDate').value,
+                time: document.getElementById('inpTime').value,
+                venueName: document.getElementById('inpVenueName').value,
+                mapLink: document.getElementById('inpMapLink').value,
+                venueAddress: document.getElementById('inpVenueAddress').value,
+                itinerary: itineraryList,
+                photoPools: JSON.parse(JSON.stringify(photoPools)),
+                heroBgImage: null
+            };
+
+            let slotsProcessed = 0;
+            let totalSlotsToCheck = 6;
+
+            function checkAllDone() {
+                slotsProcessed++;
+                if(slotsProcessed === totalSlotsToCheck) {
+                    try {
+                        localStorage.setItem('weddingData', JSON.stringify(data));
+                        loadSavedCustomizations();
+                        toggleCustomizer();
+                        alert('Changes saved successfully! 🎉');
+                    } catch(err) {
+                        alert('Error: The uploaded images might be too large for browser storage.');
+                        console.error(err);
+                    }
+                }
+            }
+
+            const heroInput = document.getElementById('heroImageInput');
+            if(heroInput && heroInput.files && heroInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    data.heroBgImage = e.target.result;
+                    checkAllDone();
+                };
+                reader.readAsDataURL(heroInput.files[0]);
+            } else {
+                const currentBg = document.getElementById('heroSection').style.backgroundImage;
+                if(currentBg && currentBg.includes('url(')) {
+                    data.heroBgImage = currentBg.slice(currentBg.indexOf('url("') + 5, currentBg.lastIndexOf('")'));
+                    if(!data.heroBgImage) {
+                        const match = currentBg.match(/url\((['"])?(.*?)\1\)/);
+                        if(match) data.heroBgImage = match[2];
+                    }
+                }
+                checkAllDone();
+            }
+
+            for(let i=0; i<5; i++) {
+                const inputEl = document.getElementById(`slot${i}Input`);
+                if(inputEl && inputEl.files && inputEl.files.length > 0) {
+                    const files = inputEl.files;
+                    let newPool = [];
+                    let loadedCount = 0;
+                    Array.from(files).forEach((file, index) => {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            newPool[index] = e.target.result;
+                            loadedCount++;
+                            if(loadedCount === files.length) {
+                                data.photoPools[i] = newPool;
+                                checkAllDone();
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                } else {
+                    checkAllDone();
+                }
+            }
+        }
+
+        function loadSavedCustomizations() {
+            const saved = localStorage.getItem('weddingData');
+            if(saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    if(data.groom) document.getElementById('inpGroom').value = data.groom;
+                    if(data.bride) document.getElementById('inpBride').value = data.bride;
+                    if(data.bio) document.getElementById('inpBio').value = data.bio;
+                    if(data.heroDesc) document.getElementById('inpHeroDesc').value = data.heroDesc;
+                    if(data.groomParents) document.getElementById('inpGroomParents').value = data.groomParents;
+                    if(data.brideParents) document.getElementById('inpBrideParents').value = data.brideParents;
+                    if(data.date) document.getElementById('inpDate').value = data.date;
+                    if(data.time) document.getElementById('inpTime').value = data.time;
+                    if(data.venueName) document.getElementById('inpVenueName').value = data.venueName;
+                    if(data.mapLink) document.getElementById('inpMapLink').value = data.mapLink;
+                    if(data.venueAddress) document.getElementById('inpVenueAddress').value = data.venueAddress;
+
+                    if(data.heroBgImage) {
+                        document.getElementById('heroSection').style.backgroundImage = `url('${data.heroBgImage}')`;
+                    }
+
+                    if(data.itinerary) {
+                        itineraryList = data.itinerary;
+                        renderItinerary();
+                    }
+                    if(data.photoPools) {
+                        photoPools = data.photoPools;
+                        for(let i=0; i<5; i++) {
+                            if(photoPools[i] && photoPools[i][0]) {
+                                document.getElementById(`gridImg${i}`).src = photoPools[i][0];
+                            }
+                        }
+                    }
+
+                    const fullNameStr = `${data.bride || 'Sachini'} & ${data.groom || 'Irudaka'}`;
+                    document.getElementById('pageTitle').textContent = `${fullNameStr} - Wedding Invitation`;
+                    document.getElementById('heroNames').textContent = fullNameStr;
+                    document.getElementById('introNames').textContent = fullNameStr;
+                    document.getElementById('displayHeroDesc').textContent = data.heroDesc || '';
+                    document.getElementById('footerNames').textContent = fullNameStr;
+                    document.getElementById('footerTitleNames').textContent = fullNameStr;
+                    document.getElementById('displayBio').textContent = data.bio || '';
+                    document.getElementById('displayGroomParents').textContent = data.groomParents || '';
+                    document.getElementById('displayBrideParents').textContent = data.brideParents || '';
+                    
+                    if(data.date) {
+                        const formattedDate = new Date(data.date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+                        document.getElementById('displayDate').textContent = formattedDate;
+                        document.getElementById('footerSubText').textContent = `${formattedDate} • ${data.venueName || ''}`;
+                        startCountdown(data.date);
+                    }
+                    if(data.time) document.getElementById('displayTime').textContent = data.time;
+                    if(data.venueName) document.getElementById('displayVenueName').textContent = data.venueName;
+                    if(data.venueAddress) document.getElementById('displayVenueAddress').textContent = data.venueAddress;
+                    
+                    const mapBtn = document.getElementById('displayMapBtn');
+                    if(data.mapLink) { mapBtn.href = data.mapLink; mapBtn.style.display = 'inline-flex'; } else { mapBtn.style.display = 'none'; }
+                } catch(e) { console.error(e); }
+            }
+        }
+
+        let countdownInterval = null;
+        function startCountdown(targetDataStr) {
+            if (countdownInterval) clearInterval(countdownInterval);
+            function calculateTime() {
+                const distance = new Date(targetDataStr).getTime() - new Date().getTime();
+                if(distance > 0) {
+                    document.getElementById('days').textContent = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    document.getElementById('hours').textContent = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    document.getElementById('minutes').textContent = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    document.getElementById('seconds').textContent = Math.floor((distance % (1000 * 60)) / 1000);
+                }
+            }
+            calculateTime();
+            countdownInterval = setInterval(calculateTime, 1000);
+        }
+
+        loadSavedCustomizations();
+        startGridSlideshows();
+        renderItinerary();
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { 
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed'); 
+                    } 
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.anim-slide-up, .anim-blur-in, .anim-scale-in, .anim-slide-left, .anim-slide-right').forEach(el => observer.observe(el));
+        });
+
+        function openLightbox(imgId) {
+            const imgElement = document.getElementById(imgId), modal = document.getElementById('lightboxModal');
+            if(imgElement && modal) {
+                document.getElementById('lightboxImg').src = imgElement.src;
+                modal.classList.remove('hidden'); modal.classList.add('flex');
+            }
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            if(modal) { modal.classList.remove('flex'); modal.classList.add('hidden'); }
+        }
+
+        let attendanceStatus = 'Accept';
+        function setAttendance(status) { attendanceStatus = status; }
+        function handleRSVP(event) {
+            event.preventDefault();
+            const name = document.getElementById('guestName').value, email = document.getElementById('guestEmail',).value;
+            const msgDiv = document.getElementById('rsvpMessage');
+            msgDiv.classList.remove('hidden');
+            msgDiv.textContent = `Thank you, ${name} (${email})! Your response ("${attendanceStatus}") has been recorded.`;
+        }
+    </script>
+</body>
+</html>
